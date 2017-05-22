@@ -1,0 +1,1539 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head>
+
+<title>Implementers' Draft: Portable Contacts 1.0 Draft C</title>
+<meta name="description" content="Portable Contacts 1.0 Draft C">
+<meta name="generator" content="xml2rfc v1.33 (http://xml.resource.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body>
+
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr><td class="header">Implementers' Draft</td><td class="header">J. Smarr</td></tr>
+
+<tr><td class="header">&nbsp;</td><td class="header">Plaxo</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">August 5, 2008</td></tr>
+</table></td></tr></table>
+<h1><br />Portable Contacts 1.0 Draft C</h1>
+
+<h3>Abstract</h3>
+
+<p>
+        The Portable Contacts specification is designed to make it easier for developers to give their users a secure way to access the address books and friends lists they have built up all over the web. Specifically, it seeks to create a common access pattern and contact schema that any site can provide, well-specified authentication and access rules, standard libraries that can work with any site, and absolutely minimal complexity, with the lightest possible toolchain requirements for developers.
+      
+</p>
+<p>
+        By far the easiest way to start understanding this spec is to jump to the example in the Appendix. The format and meaning of the response should be readily apparent, and the majority of this document is merely an attempt to formalize the details of what should be relatively clear from this example.
+      
+
+</p><a name="toc"></a><br /><hr />
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="http://portablecontacts.net/draft-spec.html#anchor1">1.</a>&nbsp;
+Notation and Conventions<br />
+<a href="http://portablecontacts.net/draft-spec.html#anchor2">2.</a>&nbsp;
+Definitions<br />
+<a href="http://portablecontacts.net/draft-spec.html#anchor3">3.</a>&nbsp;
+Introduction<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor4">3.1.</a>&nbsp;
+
+Goals<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor5">3.2.</a>&nbsp;
+Approach<br />
+<a href="http://portablecontacts.net/draft-spec.html#anchor6">4.</a>&nbsp;
+Workflow Overview<br />
+<a href="http://portablecontacts.net/draft-spec.html#discovery">5.</a>&nbsp;
+Discovery<br />
+<a href="http://portablecontacts.net/draft-spec.html#anchor7">6.</a>&nbsp;
+Invocation<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#auth">6.1.</a>&nbsp;
+Authentication and Authorization<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor8">6.1.1.</a>&nbsp;
+Delegated Authorization<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor9">6.1.2.</a>&nbsp;
+Direct Authorization<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor10">6.1.3.</a>&nbsp;
+Available Authorization Methods<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor11">6.2.</a>&nbsp;
+
+Additional Path Information<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#query-params">6.3.</a>&nbsp;
+Query Parameters<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor12">6.3.1.</a>&nbsp;
+Filtering<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor13">6.3.2.</a>&nbsp;
+Sorting<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor14">6.3.3.</a>&nbsp;
+Pagination<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor15">6.3.4.</a>&nbsp;
+Presentation<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#declining">6.3.5.</a>&nbsp;
+Declining to honor query parameters<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#response-format">6.4.</a>&nbsp;
+Response Format<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#error-codes">6.5.</a>&nbsp;
+Error Codes<br />
+<a href="http://portablecontacts.net/draft-spec.html#schema">7.</a>&nbsp;
+
+Contact Schema<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#structure">7.1.</a>&nbsp;
+Structure<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#entry-schema">7.2.</a>&nbsp;
+entry Element<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor16">7.2.1.</a>&nbsp;
+Singular Fields<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#anchor17">7.2.2.</a>&nbsp;
+Plural Fields<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#name_element">7.3.</a>&nbsp;
+name Element<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#address_element">7.4.</a>&nbsp;
+address Element<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#organization_element">7.5.</a>&nbsp;
+organization Element<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://portablecontacts.net/draft-spec.html#account_element">7.6.</a>&nbsp;
+account Element<br />
+<a href="http://portablecontacts.net/draft-spec.html#anchor18">Appendix&nbsp;A.</a>&nbsp;
+
+Example<br />
+<a href="http://portablecontacts.net/draft-spec.html#anchor19">Appendix&nbsp;B.</a>&nbsp;
+Compatibility with OpenSocial<br />
+<a href="http://portablecontacts.net/draft-spec.html#rfc.references1">8.</a>&nbsp;
+References<br />
+<a href="http://portablecontacts.net/draft-spec.html#rfc.authors">&#167;</a>&nbsp;
+Author's Address<br />
+</p>
+<br clear="all" />
+
+<a name="anchor1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Notation and Conventions</h3>
+
+<p>
+        The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a class='info' href='http://portablecontacts.net/draft-spec.html#RFC2119'>[RFC2119]<span> (</span><span class='info'>Bradner, B., &ldquo;Key words for use in RFCs to Indicate Requirement Levels,&rdquo; .</span><span>)</span></a>. Domain name examples use <a class='info' href='http://portablecontacts.net/draft-spec.html#RFC2606'>[RFC2606]<span> (</span><span class='info'>Eastlake, D. and A. Panitz, &ldquo;Reserved Top Level DNS Names,&rdquo; .</span><span>)</span></a>.
+      
+
+</p>
+<a name="anchor2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Definitions</h3>
+
+<p>
+        </p>
+<blockquote class="text"><dl>
+<dt>Contact:</dt>
+<dd>
+            A record describing information about a particular person or entity, consisting of contact information (e.g. name, e-mail addresses, phone numbers) and other descriptive information, as is typically found in address book and social networking applications.
+          
+
+</dd>
+<dt>Service Provider:</dt>
+<dd>
+            A web application that provides Contact information via the Portable Contacts protocol.
+          
+</dd>
+<dt>Consumer:</dt>
+<dd>
+            A website or application that uses the Portable Contacts protocol to request contacts managed by the Service Provider.
+          
+</dd>
+<dt>Base URL:</dt>
+<dd>
+            The root endpoint URL specified by the Service Provider during Discovery and used to make requests. Consumers MAY append additional path information and query string parameters to this URL as part of the request.
+          
+
+</dd>
+<dt>Singular Field:</dt>
+<dd>
+            A contact field that can appear at most once per contact, e.g. <tt>displayName</tt> or <tt>gender</tt>.
+          
+</dd>
+<dt>Plural Field:</dt>
+<dd>
+            A contact field that can appear multiple times per contact, e.g. <tt>emails</tt> or <tt>tags</tt>.
+          
+
+</dd>
+<dt>Simple Field</dt>
+<dd>
+            A Singular Field or Plural Field whose value is a single string attribute (see <a class='info' href='http://portablecontacts.net/draft-spec.html#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Structure</span><span>)</span></a>).
+          
+</dd>
+<dt>Complex Field</dt>
+<dd>
+
+            A Singular Field or Plural Field whose value is an object containing multiple sub-field attributes (see <a class='info' href='http://portablecontacts.net/draft-spec.html#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Structure</span><span>)</span></a>).
+          
+</dd>
+<dt>Canonical Value:</dt>
+<dd>
+            Specified string values for string-valued contact fields that represent common values in a canonical form, e.g. "male" and "female" for <tt>gender</tt>. Service Providers SHOULD conform to Canonical Values if appropriate, but MAY deviate if they need to represent additional values.
+          
+
+</dd>
+<dt>Primary Sub-Value:</dt>
+<dd>
+            The sub-field in a Complex Field that should be used when sorting or filtering by that field. Unless otherwise specified, the <tt>value</tt> sub-field is always the Primary Sub-Field.
+          
+</dd>
+</dl></blockquote><p>
+      
+</p>
+<a name="anchor3"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+
+Introduction</h3>
+
+<p>
+        This API defines a language- and platform- neutral protocol for Consumers to request address book, profile, and friends-list information from Service Providers. As a protocol, it is intended to be easy to understand and implement, either as a Service Provider or Consumer, using any language or platform of choice. It is also intended to be implemented by both individuals and small services as well as large providers, in any case where a service contains data about who a user knows and wishes to make that information portable, under the user's control.
+      
+</p>
+<p>
+        While there are currently standards for describing contact info (such as vCard), these standards do not specify how to discover, access, and manipulate this information, and they do not capture the full range of information typically found in modern address book and social networking applications. Several large companies have also released their own non-standard APIs for accessing and interacting with contact information, increasing the burden on developers and Consumers who wish to support most or all Service Providers. Nor do these APIs inform other providers as to how they should construct similar APIs. Thus Portable Contacts is an attempt to specify a complete, modern, and straight-forward recipe for Service Providers and Consumers of all sizes to make available and consume contact data in a standardized way.
+      
+</p>
+<a name="anchor4"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1"></a><h3>3.1.&nbsp;
+Goals</h3>
+
+<p>
+          The goal of Portable Contacts is to make it easier for developers to give their users a secure way to access the address books and friends lists they have built up all over the web. Specifically, we seek to create:
+          </p>
+<ul class="text">
+<li>A common access pattern and contact schema that any Service Provider can implement
+</li>
+<li>Well-specified authorization and access rules
+</li>
+<li>Free and open source libraries in many languages for most popular platforms
+</li>
+<li>Community-sourced support, documentation, and collaborative tools
+</li>
+<li>and absolutely minimal complexity, with the lightest possible toolchain requirements for developers.
+</li>
+</ul><p>
+
+        
+</p>
+<p>
+          A measure of our success will be the elimination of the "password anti-pattern," by making it far easier to implement Portable Contacts than to engage in scraping, as well as a dramatic increase in the number of sites that both provide and consume who-you-know data.
+        
+</p>
+<a name="anchor5"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2"></a><h3>3.2.&nbsp;
+Approach</h3>
+
+<p>
+          Our design is focused around ease of adoption, which means a few things:
+          </p>
+
+<ol class="text">
+<li>
+              First, our emphasis is on simplicity of design and targeted use cases, keeping our scope intentionally narrow at the outset. For example, version 1 is simply about access, and defers for now on the more complex issues around update and sync.
+            
+</li>
+<li>
+              Second, we're taking a modern approach to who-you-know data by unifying traditional contact information and social network data, in order to properly represent the current diversity of the social web ecosystem. 
+            
+</li>
+<li>
+              Third, we're reusing existing standards wherever possible, including vCard, OpenSocial, XRDS-Simple, OAuth, etc.
+            
+</li>
+<li>
+              And lastly, we're designing something that should be easy for current service providers to adopt. We started with a review of all the major existing contacts APIs and targeted common capabilities that they all share and provide. We believe this pragmatic balance is the best and quickest way to achieve our intended goal of widespread adoption.
+            
+</li>
+
+</ol><p>
+        
+</p>
+<a name="anchor6"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Workflow Overview</h3>
+
+<p>
+        A Consumer wishing to access a user's data via Portable Contacts must start with an Initial Identifier for the Service Provider containing the user's data, usually provided by the user. In many cases, this may be the domain name of the Service Provider's web site, such as sample.site.org, but may be a more specific URL, such as the OpenID identifier of the user, if available. Consumers then perform Discovery on the Initial Identifier to determine where the Portable Contacts endpoint for this Service Provider resides. If successful, the Consumer may then attempt to request information from that endpoint. If the endpoint contains private data, the Service Provider will return an authorization challenge, and the Consumer must then guide the user through an appropriate authorization flow to obtain the credentials necessary to access this private data. Upon successful authorization, the Consumer may request data from the Portable Contacts endpoint using these authorization credentials. Whether accessing public or private data, Consumers may request a specific subset of the user's data using standard Query Parameters. Upon a successful request, the data is returned in the response, and the Consumer may then parse the response data and use it as desired. The following sections detail each of these steps.
+      
+</p>
+<a name="discovery"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Discovery</h3>
+
+<p>
+        Portable Contacts API endpoint is discoverable from the domain root using <a class='info' href='http://portablecontacts.net/draft-spec.html#XRDS-Simple'>[XRDS&#8209;Simple]<span> (</span><span class='info'>Hammer-Lahav, E., &ldquo;XRDS-Simple 1.0,&rdquo; .</span><span>)</span></a> (previously known as YADIS). The API is identified by the Service Type http://portablecontacts.net/spec/1.0 and the corresponding URI is the Base URL for the API. The Base URL MUST NOT contain any query string, as additional path information and query string variables MAY be appended by Consumers as part of forming the request (as described in detail below).
+      
+
+</p>
+<p>
+        An example XRDS-Simple document describing the availability and location of a Portable Contacts endpoint might look like this:
+        </p>
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>
+&lt;XRDS xmlns="xri://$xrds"&gt;
+  &lt;XRD xmlns:simple="http://xrds-simple.net/core/1.0" xmlns="xri://$XRD*($v*2.0)" version="2.0"&gt;
+    &lt;Type&gt;xri://$xrds*simple&lt;/Type&gt;
+    &lt;Service&gt;
+
+      &lt;Type&gt;http://portablecontacts.net/spec/1.0&lt;/Type&gt;
+      &lt;URI&gt;http://sample.site.org/path/to/api/&lt;/URI&gt;
+    &lt;/Service&gt;
+  &lt;/XRD&gt;
+&lt;/XRDS&gt;
+
+</pre></div><p>
+
+      
+</p>
+<p>
+        In addition to discovering the endpoint itself, Service Providers using OAuth to protect responses MUST also support OAuth Discovery, as described in <a class='info' href='http://portablecontacts.net/draft-spec.html#auth'>Section&nbsp;6.1<span> (</span><span class='info'>Authentication and Authorization</span><span>)</span></a>.
+      
+</p>
+<a name="anchor7"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+
+<a name="rfc.section.6"></a><h3>6.&nbsp;
+Invocation</h3>
+
+<p>
+        All requests to the Service Provider are made as HTTP GET operations on a URL deriving from the Base URL specified in <a class='info' href='http://portablecontacts.net/draft-spec.html#discovery'>Section&nbsp;5<span> (</span><span class='info'>Discovery</span><span>)</span></a>. Consumers MAY append additional path information and/or query string parameters to the Base URL as part of the request, as specified in <a class='info' href='http://portablecontacts.net/draft-spec.html#query-params'>Section&nbsp;6.3<span> (</span><span class='info'>Query Parameters</span><span>)</span></a>. Additionally, authentication information MAY be sent via POST data or additional HTTP headers in the request, as specified in <a class='info' href='http://portablecontacts.net/draft-spec.html#auth'>Section&nbsp;6.1<span> (</span><span class='info'>Authentication and Authorization</span><span>)</span></a>. Responses are returned in the body of the HTTP response, formatted as JSON or XML, depending on what is requested. Response and error codes SHOULD be transmitted via the HTTP status code of the response (if possible), and SHOULD also be specified in the body of the response, as described in <a class='info' href='http://portablecontacts.net/draft-spec.html#response-format'>Section&nbsp;6.4<span> (</span><span class='info'>Response Format</span><span>)</span></a> and <a class='info' href='http://portablecontacts.net/draft-spec.html#error-codes'>Section&nbsp;6.5<span> (</span><span class='info'>Error Codes</span><span>)</span></a>. Since the API endpoint is dynamic (and not serving static content), Consumers MUST NOT interpret any cache headers in the response as having meaning concerning when the same URL request might return a different response upon subsequent invocation.
+      
+
+</p>
+<a name="auth"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.1"></a><h3>6.1.&nbsp;
+Authentication and Authorization</h3>
+
+<p>
+          The data returned by a Portable Contacts endpoint MAY contain public data, or it MAY contain private data. If the data returned is public, no authentication or authorization is required. In most cases however, the data returned is not public, and Service Providers SHOULD ensure that the user has given prior consent, either explicitly or implicitly, for their information to be released by this API. Typically this is done by Consumers obtaining either Direct Authorization (with raw credentials, for example the user's username and password) or Delegated Authorization (with an access token obtained out-of-band by the user, and given to the Consumer to present as part of the request). Portable Contacts specifies standard mechanisms for both types of authorization, so that Consumers may be able to obtain private data on a user's behalf from Service Providers in an automated and consistent fashion. Regardless of the Authorization method used, the context of the request (i.e. the user for whom data is being requested) MUST be inferred by Service Providers from the Base URL and the authorization credentials provided. If public data is being accessed (and no authorization is provided), the Base URL MUST contain enough information for Service Providers to know which data to return, but if private data is being accessed (and authorization is provided), the same Base URL MAY return information for different users depending on the authorization credentials provided.
+        
+</p>
+<a name="anchor8"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.1.1"></a><h3>6.1.1.&nbsp;
+
+Delegated Authorization</h3>
+
+<p>
+            Service Providers wishing to provide Delegated Authorization MUST support <a class='info' href="http://portablecontacts.net/draft-spec.html#OAuth Core 1.0">[OAuth Core 1.0]<span> (</span><span class='info'>OAuth Core Workgroup, &ldquo;OAuth Core 1.0,&rdquo; .</span><span>)</span></a> as an OAuth Service Provider, and MAY also support additional Delegated Authorization mechanisms, if they choose. Service Providers supporting OAuth MUST also support <a class='info' href="http://portablecontacts.net/draft-spec.html#OAuth Discovery">[OAuth Discovery]<span> (</span><span class='info'>Eran Hammer-Lahav, E., &ldquo;OAuth Discovery 1.0,&rdquo; .</span><span>)</span></a> to facilitate automatic discovery of authorization endpoints for Consumers. Service Providers SHOULD provide a mechanism for Consumers to automatically obtain a Consumer Key and Consumer Secret, but MAY require this to be done out-of-band.
+          
+
+</p>
+<a name="anchor9"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.1.2"></a><h3>6.1.2.&nbsp;
+Direct Authorization</h3>
+
+<p>
+            Service Providers wishing to provide Direct Authorization MUST support HTTP Basic Access Authentication <a class='info' href='http://portablecontacts.net/draft-spec.html#RFC2617'>[RFC2617]<span> (</span><span class='info'>Franks, J., &ldquo;HTTP Authentication: Basic and Digest Access Authentication,&rdquo; .</span><span>)</span></a>, and MAY also support additional Direct Authorization mechanisms, if they choose. In addition to being a well-established mechanism for Direct Authorization, HTTP Basic has the added benefit of being understood by most Web Browsers, and can prompt users to enter their credentials as part of accessing a resource protected in this manner. There are also convenient ways of providing and parsing HTTP Basic credentials in popular tools and libraries like curl and PHP.
+          
+
+</p>
+<a name="anchor10"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.1.3"></a><h3>6.1.3.&nbsp;
+Available Authorization Methods</h3>
+
+<p>
+            Service Providers that provide access to private data MAY choose not to support either Direct Authorization or Delegated Authorization, depending on their security requirements, but they MUST support either OAuth or HTTP Basic auth if they require any Authorization. When accessing a Portable Contacts endpoint, if sufficient authorization credentials are not provided, the Service Provider SHOULD return a 401 Unauthorized response, and SHOULD provide the available Authorization mechanisms available by including WWW-Authenticate headers in the response for each type of Authorization method supported (as defined in <a class='info' href='http://portablecontacts.net/draft-spec.html#RFC2616'>[RFC2616]<span> (</span><span class='info'>Fielding, R., &ldquo;Hypertext Transfer Protocol -- HTTP/1.1,&rdquo; .</span><span>)</span></a>, section 14.47. Consumers will then be able to recognize that the API is a protected resource and initiate the proper Authorization process needed to obtain the appropriate credentials. An example set of WWW-Authenticate headers returned by a Service Provider that supports both OAuth and HTTP Basic might look like this. Note that the realm value is intended to be an opaque string that merely defines a shared label for resources that share the same authorization requirements.
+            </p>
+
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>
+WWW-Authenticate: OAuth realm="sample.site.org"
+WWW-Authenticate: Basic realm="sample.site.org"
+</pre></div><p>
+
+          
+</p>
+<p>
+            If Service Providers wish to make some response data publicly available and also provide additional info given the proper authorization credentials, they SHOULD provide a 200 OK response to requests without authorization with a WWW-Authenticate header in the response indicating that additional info is available via the specified authorization mechanisms.
+          
+</p>
+<a name="anchor11"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.2"></a><h3>6.2.&nbsp;
+Additional Path Information</h3>
+
+<p>
+          A request using the Base URL alone MUST yield a result, assuming that adequate authorization credentials are provided. In addition, Consumers MAY append additional path information to the Base URL to request more specific information. Service Providers MUST recognize the following additional path information when appended to the Base URL, and MUST return the corresponding data:
+          </p>
+<ul class="text">
+<li>
+              <tt>/@me/@all</tt> -- Return all contact info (equivalent to providing no additional path info)
+            
+</li>
+<li>
+              <tt>/@me/@all/{id}</tt> -- Only return contact info for the contact whose <tt>id</tt> value is equal to the provided <tt>{id}</tt>, if such a contact exists. In this case, the response format is the same as when requesting all contacts, but any contacts not matching the requested ID MUST be filtered out of the result list by the Service Provider
+            
+
+</li>
+<li>
+              <tt>/@me/@self</tt> -- Return contact info for the owner of this information, i.e. the user on whose behalf this request is being made. In this case, the response format is the same as when requesting all contacts, but any contacts not matching the requested ID MUST be filtered out of the result list by the Service Provider.
+            
+</li>
+</ul><p>
+        
+</p>
+<a name="query-params"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3"></a><h3>6.3.&nbsp;
+Query Parameters</h3>
+
+<p>
+          Portable Contacts defines a standard set of operations that can be used to filter, sort, and paginate response results. The operations are specified by adding query parameter to the Base URL, either in the query string or as HTTP POST data. Providers MAY support additional query parameters not specified here, and Providers SHOULD ignore any query parameters they don't recognize.
+        
+</p>
+<a name="anchor12"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3.1"></a><h3>6.3.1.&nbsp;
+Filtering</h3>
+
+<p>
+            Filtering is used to limit the request results to Contacts that match given criteria. Content filtering is accomplished by combining three request parameters:
+
+            </p>
+
+<blockquote class="text"><dl>
+<dt>filterBy:</dt>
+<dd>
+                Specifies the field name to filter by. If the specified field is a Plural Field, the Contact SHALL match if any of the instances of the given field match the specified criterion (e.g. if a contact has multiple <tt>emails</tt> values, only one has to match for the entire Contact to match). If a Simple Field is specified, its value must match the specified <tt>filterValue</tt> according to the specified <tt>filterOp</tt>. If a Complex Field is specified, its Primary Sub-Field must match. If the specified field is not a direct child of the <tt>entry</tt> element, the full path MUST be specified using the '.' character as separator. For example, to filter by gender the parameter value is <tt>gender</tt> and to filter by first name, the parameter value is <tt>name.givenName</tt>. 
+              
+
+</dd>
+<dt>filterOp:</dt>
+<dd>
+                Specifies the comparison method used to evaluate the field value with the value of the filter criterion. Providers SHOULD support the following values:
+                
+<ul class="text">
+<li>
+                    <tt>equals</tt>: the two values must be identical strings.
+                  
+</li>
+<li>
+                    <tt>contains</tt>: the entire <tt>filterValue</tt>
+
+                    must be a substring of the Contact field value.
+                  
+</li>
+<li>
+                    <tt>startswith</tt>: the entire <tt>filterValue</tt>
+                    must be a substring of the Contact field value, starting at the beginning of the field value. This criterion is satisfied if the two strings are equal.
+                  
+</li>
+<li>
+                    <tt>present</tt>: a Contact matches the criterion if the field specified by
+                    <tt>filterBy</tt> has a non-empty value, or if it contains a non-empty node for complex fields.
+                  
+
+</li>
+</ul>
+                Providers MAY support additional filter operations if they choose. Providers MUST decline to filter results if the specified filter operation is not recognized (as per <a class='info' href='http://portablecontacts.net/draft-spec.html#declining'>Section&nbsp;6.3.5<span> (</span><span class='info'>Declining to honor query parameters</span><span>)</span></a>).
+              
+</dd>
+<dt>filterValue:</dt>
+<dd>
+                Specifies the value to filter by, using the comparison method defined by <tt>filterOp</tt>.
+              
+
+</dd>
+</dl></blockquote><p>
+          
+</p>
+<p>
+            In addition, requests can filter content based on their <tt>update</tt> timestamp:
+
+            </p>
+<blockquote class="text"><dl>
+<dt>updatedSince:</dt>
+<dd>
+                Returns only contacts that have been modified on or after the given time, specified as an xs:dateTime. The filter is based on the value of the <tt>updated</tt> field, and can be used independently of other filters or combined. It enables a basic syndication pattern when accessing the same data over time. The first API call returns all data, which can be stored locally. Subsequent API calls can specify <tt>updatedSince</tt> with the time of the last API call, so that only contacts that have been added or modified since the last API call will be returned.
+              
+
+</dd>
+</dl></blockquote><p>
+          
+</p>
+<p>
+            Here are a few illustrative examples of filtering matches with <tt>filterBy</tt>,
+            <tt>filterOp</tt>, and <tt>filterValue</tt>. In each case, assume the following two contacts would be returned if no filtering parameters were provided:
+
+          </p>
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>
+      {
+        "id": "1",
+        "displayName": "Chris Messina",
+        "urls": [
+          { "value": "http://factoryjoe.com/blog", "type": "blog" }
+        ]
+      },
+      {
+        "id": "2",
+        "displayName": "Joseph Smarr",
+        "emails": [
+          { "value": "joseph@plaxo.com", "type": "work", "primary": "true" },
+          { "value": "jsmarr@gmail.com", "type": "home" }
+        ],
+      }
+
+</pre></div><p>
+
+
+            Given the parameters <tt>filterBy=displayName&amp;filterOp=startswith&amp;filterValue=Chr</tt>, only the first contact (with id=1) would match and be returned. However, with parameters <tt>filterBy=displayName&amp;filterOp=present</tt>, both contacts would be returned. Given the parameters <tt>filterBy=email&amp;filterOp=contains&amp;filterValue=plaxo.com</tt>, only the second contact (with id=2) would match, as would it be the only contact to match given the parameters <tt>filterBy=email&amp;filterOp=present</tt>.
+          
+
+</p>
+<p>
+            If a request specifies a <tt>filterValue</tt> but no <tt>filterBy</tt> or <tt>filterOp</tt>, it is up to the Provider how to interpret this filter request. Providers MAY choose to default to filtering by a given field (e.g. <tt>displayName</tt>); they MAY choose to implement a custom, Provider-specific query syntax for <tt>filterValue</tt> in this case; or they MAY choose to reject requests of this type. In general, if Consumers want to request specific behavior from Providers, they should do so by being explicit in their use of query parameters.
+          
+
+</p>
+<a name="anchor13"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3.2"></a><h3>6.3.2.&nbsp;
+Sorting</h3>
+
+<p>
+            Sorting allows requests to specify the order in which contacts are returned.
+
+            </p>
+<blockquote class="text"><dl>
+<dt>sortBy</dt>
+<dd>
+
+                Specifies the field name whose value SHALL be used to order the returned Contacts. The sort order is determine by the <tt>sortOrder</tt> parameter. If <tt>sortBy</tt> is a Singular Field, contacts are sorted according to that field's value; if it's a Plural Field, contacts are sorted by the Value (or Major Value, if it's a Complex Field, see <a class='info' href='http://portablecontacts.net/draft-spec.html#schema'>Section&nbsp;7<span> (</span><span class='info'>Contact Schema</span><span>)</span></a>) of the field marked with "primary": "true", if any, or else the first value in the list, if any, or else they are sorted last if the given contact has no data for the given field.
+              
+</dd>
+<dt>sortOrder</dt>
+
+<dd>
+                The order in which the <tt>sortBy</tt> parameter is applied. Allowed values are <tt>ascending</tt> and <tt>descending</tt>. If a value for <tt>sortBy</tt> is provided and no <tt>sortOrder</tt> is specifies, the <tt>sortOrder</tt> SHALL default to <tt>ascending</tt>. Sort order is expected to be case-insensitive Unicode alphabetic sort order, with no specific locale implied.
+              
+
+</dd>
+</dl></blockquote><p>
+          
+</p>
+<a name="anchor14"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3.3"></a><h3>6.3.3.&nbsp;
+Pagination</h3>
+
+<p>
+            The pagination parameters can be used together to "page through" a large number of results in manageable chunks:
+
+            </p>
+<blockquote class="text"><dl>
+
+<dt>startIndex:</dt>
+<dd>
+                Specifies the offset of the first result to be returned with respect to the list of contacts that would be returned if no <tt>startIndex</tt> were provided. For instance, if in a given request 10 contacts would normally be provided, if <tt>startIndex</tt>
+                is 7 and no <tt>count</tt> is specified, then only the last 3 contacts in that list would be returned (contacts are zero-indexed). If <tt>startIndex</tt> is greater than or equal to the total number of results that would be returned, no contacts are returned. Value MUST be a non-negative integer and defaults to 0 if no value is specified.
+              
+
+</dd>
+<dt>count:</dt>
+<dd>
+                If non-zero, specifies the maximum number of contacts the Consumer would like the Provider to return at a time. Value MUST be a non-negative integer and defaults to 0 if no value is specified. A <tt>count</tt> of 0 means that is up to the Provider to determine how many contacts to return by default (some Providers may return all contacts by default; others may return a fixed default number like 10). Providers SHOULD honor a very large <tt>count</tt> value, and SHOULD support returning all contacts at once when presented with a <tt>count</tt> request that is larger than the number of contacts the user has, but Providers MAY choose to never return more than a Provider-determined maximum number of contacts per request, if returning all contacts is too burdensome. In all cases, at most <tt>count</tt>
+
+                contacts SHALL be returned, starting at <tt>startIndex</tt> and counting up from there. In each of these cases, Providers MUST indicate the total number of contacts they chose to return in the response using the <tt>itemsPerPage</tt> response element (see <a class='info' href='http://portablecontacts.net/draft-spec.html#response-format'>Section&nbsp;6.4<span> (</span><span class='info'>Response Format</span><span>)</span></a>).
+              
+</dd>
+</dl></blockquote><p>
+
+            For instance, on an initial query, specifying <tt>startIndex=0&amp;count=10</tt>
+            will return only the first 10 results. The total number of possible results is indicated by the <tt>totalResults</tt> field of results, so the client knows how many "pages" of results exist. A subsequent query of <tt>startIndex=10&amp;count=10</tt> will return the next 10 results, and so on.
+          
+</p>
+<a name="anchor15"></a><br /><hr />
+
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3.4"></a><h3>6.3.4.&nbsp;
+Presentation</h3>
+
+<p>
+            Presentation controls the format, makeup, and delivery mechanism for returning the requested result set:
+
+            </p>
+<blockquote class="text"><dl>
+<dt>fields:</dt>
+<dd>
+                If non-empty, each contact returned SHALL contain only the fields explicitly requested. Service Provider MAY return a subset of the requested fields if they are not supported. This field is used for efficiency when the client only wishes to access a subset of the fields normally returned in results. Value is a comma separated list of top level field names (e.g. <tt>id,name,emails,photos</tt>) and defaults to an empty list which means it's up to the Provider which fields to return. Consumers may request all available fields to be returned by using the special value <tt>@all</tt>.
+              
+
+</dd>
+<dt>format:</dt>
+<dd>
+                Specifies the format in which the response data is returned. Service Providers MUST support the values <tt>json</tt> for JSON (http://json.org) and <tt>xml</tt> for XML (http://www.w3.org/XML/) and MAY support additional formats if desired. The format defaults to <tt>json</tt> if no format is specified. The data structure returned is equivalent in both formats; the only difference is in the encoding of the data. Singular Fields are encoded as string key/value pairs in JSON and tags with text content in XML, e.g. <tt>"field": "value"</tt> and <tt>&lt;field&gt;value&lt;/field&gt;</tt> respectively. Plural Fields and Plural Bundles are encoded as arrays in JSON and repeated tags in XML, e.g. <tt>"fields": [ "value1", "value2" ]</tt> and <tt>&lt;fields&gt;value1&lt;/fields&gt;&lt;fields&gt;value2&lt;/fields&gt;</tt> respectively. Nodes with multiple sub-nodes are represented as objects in JSON and tags with sub-tags in XML, e.g. <tt>"field": { "subfield1": "value1", "subfield2": "value2" }</tt> and <tt>&lt;field&gt;&lt;subfield1&gt;value1&lt;/subfield1&gt;&lt;subfield2&gt;value2&lt;/subfield2&gt;&lt;/field&gt;</tt> respectively.
+              
+
+</dd>
+</dl></blockquote><p>
+          
+</p>
+<a name="declining"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.3.5"></a><h3>6.3.5.&nbsp;
+Declining to honor query parameters</h3>
+
+<p>
+            Providers SHOULD honor all filtering, sorting, and pagination requests specified via Query Parameters. However, in some instances it may be too burdensome to comply with a particular request, e.g. because the Provider does not have an efficient database index set up for a given field that is requested for filtering or sorting, and is unable to efficiently fetch all data and post-process the results to honor the request before returning the response. In such cases, Providers MAY decline to honor the request (or specific pieces of the request). If any part of the request is declined, Providers MUST specify which part(s) of the request were declined in the response, using <tt>"sorted": false</tt>, <tt>"filtered": false</tt>, and/or <tt>"updatedSince": false</tt> as appropriate. For efficiency, Providers SHOULD omit these response fields if that part of the request was successfully performed, or if no such Query Parameter was specified in the request. 
+          
+
+</p>
+<p>
+            Note that since all of the filtering, sorting, and pagination operations are designed to reduce the amount of data returned, it is possible for Consumers to emulate these operations client-side when a Provider declines to perform them server-side. For instance, filtering can be accomplished by iterating through each entry returned and deleting those that do not match the filtering criteria. Thus Consumers can request these operations to be performed server-side, and Providers will honor them if possible, and otherwise indicate to Consumers that they need to be performed client-side, effectively "splitting the workload" while maintaining consistent semantics.
+          
+</p>
+<a name="response-format"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.4"></a><h3>6.4.&nbsp;
+Response Format</h3>
+
+<p>
+          The structure of the response object returned from a successful request is as follows. The root element is <tt>response</tt>, which is shown explicitly as the root element in XML format, and is the anonymous root object returned when the format is JSON (i.e. in JSON, the response returned is the object value of the <tt>response</tt> node). The <tt>response</tt> node MUST contain the following child nodes, and MAY contain additional nodes that the Service Provider wishes to add to expose additional data. Note that <tt>startIndex</tt>, <tt>itemsPerPage</tt>, and <tt>totalResults</tt> are based on <a class='info' href='http://portablecontacts.net/draft-spec.html#OpenSearch'>[OpenSearch]<span> (</span><span class='info'>Clinton, D., &ldquo;OpenSearch 1.1,&rdquo; .</span><span>)</span></a>. See the Appendix for a full example.
+          </p>
+
+<ul class="text">
+<li>
+              <tt>startIndex</tt>: the index of the first result returned in this response, relative to the starting index of all results that would be returned if no <tt>startIndex</tt> had been requested. In general, this will be equal to the value requested by the <tt>startIndex</tt>, or 0 if no specific <tt>startIndex</tt> was requested.
+            
+</li>
+<li>
+              <tt>itemsPerPage</tt>: the number of results returned per page in this response. In general, this will be equal to the <tt>count</tt> Query Parameter, but MAY be less if the Service Provider is unwilling to return as many results per page as requested, or if there are less than the requested number of results left to return when starting at the current <tt>startIndex</tt>. This field MUST be present if and only if a value for <tt>count</tt> is specified in the request.
+            
+
+</li>
+<li>
+              <tt>totalResults</tt>: the total number of contacts that would be returned if there were no <tt>startIndex</tt> or <tt>count</tt> specified. This value tells the Consumer how many total results to expect, regardless of the current pagination being used, but taking into account the current filtering options in the request.
+            
+</li>
+<li>
+              <tt>entry</tt>: an array of Contact objects, one for each contact matching the request, as defined in <a class='info' href='http://portablecontacts.net/draft-spec.html#entry-schema'>Section&nbsp;7.2<span> (</span><span class='info'>entry Element</span><span>)</span></a>. For consistency of parsing, if the request could possibly return multiple contacts (as is normally the case), this value MUST always be an array of results, even if there happens to be 0 or 1 matching results. If the request is specifically for a single contact (e.g. because the request contains Additional Path Information like <tt>/@me/@all/{id}</tt> or <tt>/@me/@self</tt>), then <tt>entry</tt> MUST be an object containing the single contact returned (i.e. <tt>"entry": [ { /* first contact */ } ]</tt> and <tt>"entry": { /* only contact */ }</tt> respectively).
+            
+
+</li>
+</ul><p>
+        
+</p>
+<a name="error-codes"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.6.5"></a><h3>6.5.&nbsp;
+Error Codes</h3>
+
+<p>
+          The Service Provider MUST return a response code with every response. Response codes are numeric and conform to existing HTTP response codes where possible, as defined below. In addition to the response code, Service Providers SHOULD also provide a human-readable reason that explains the reason for the response code. This message SHOULD be intelligible to developers, but MAY be unsuitable for display to end-users. Clients SHOULD provide their own appropriate error message to users when encountering an error response.
+        
+</p>
+<p>
+
+          Service Providers SHOULD conform to the following response codes to indicate the following situations. Service Providers MAY return additional codes to indicate additional information, but are discouraged from doing so and should instead augment the reason text with existing codes, if possible.
+        
+</p>
+<p>
+          </p>
+<blockquote class="text"><dl>
+<dt>200:</dt>
+<dd>
+              OK (response returned successfully)
+            
+</dd>
+<dt>400:</dt>
+<dd>
+              Bad Request (request was malformed or illegal and cannot be completed)
+            
+
+</dd>
+<dt>401:</dt>
+<dd>
+              Unauthorized (authentication headers / parameters were invalid or missing)
+            
+</dd>
+<dt>404:</dt>
+<dd>
+              Not Found (the request points to an object that does not exist, e.g. to an unknown contact id; note that Service Providers MUST return a 200 with an empty array of contacts if the request has filtering parameters that are valid but have no matches)
+            
+</dd>
+<dt>500:</dt>
+<dd>
+              Internal Server Error (un unexpected error occurred during processing)
+            
+
+</dd>
+<dt>503:</dt>
+<dd>
+              Service Unavailable (service is temporarily unavailable; this may be because the Consumer has exceeded their rate-limit of requests)
+            
+</dd>
+</dl></blockquote><p>
+        
+</p>
+<a name="schema"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7"></a><h3>7.&nbsp;
+Contact Schema</h3>
+
+<p>
+        The Contact schema defines the containers and attributes used to deliver an individual Contact or a list of Contacts as requested by the Consumer. The traditional contact info fields were taken directly from the vCard spec where possible <a class='info' href='http://portablecontacts.net/draft-spec.html#RFC2425'>[RFC2425]<span> (</span><span class='info'>Howes, T., &ldquo;A MIME Content-Type for Directory Information,&rdquo; .</span><span>)</span></a>, though instances of vCard's archaic spellings were modernized (e.g. <tt>addresses</tt> instead of <tt>adr</tt>). Even with the spelling updates, the field mappings remain equivalent, which means it should be easy to convert Portable Contacts data to and from vCard. By convention, Singular Fields have singular spelling (e.g. <tt>displayName</tt>) and plural fields have plural spelling (e.g. <tt>phoneNumbers</tt>) to make it easy to distinguish them.
+      
+
+</p>
+<p>
+        Each contact returned MUST include the <tt>id</tt> and <tt>displayName</tt> fields with non-empty values, but all other fields are optional, and it is recognized that not all Service Providers will be able to provide data for all the supported fields. The field list below is broad so that, for Service Providers that do support any of these fields, there is a standard field name available.
+      
+</p>
+<a name="structure"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.1"></a><h3>7.1.&nbsp;
+Structure</h3>
+
+<p>
+          Each field is defined as either a Singular Field, in which case there MUST NOT be more than one instance of that field per contact, or as a Plural Field, in which case any number of instances of that field MAY be present per contact.
+        
+</p>
+<p>
+          Contact information is formatted using labeled attributes with either structured or unstructured string data. Each attribute value consists of one of the following types:
+
+          </p>
+<blockquote class="text"><dl>
+<dt>Simple:</dt>
+<dd>
+              A single string attribute which MAY specify a REQUIRED data format or allow any string. A simple field MAY contain Canonical Values specified, in which case Service Providers SHOULD try to conform to those values if appropriate, but MAY provide alternate string values to represent additional values.
+            
+</dd>
+<dt>Boolean:</dt>
+
+<dd>
+              A special case of a Simple Field with two legal values: <tt>true</tt> and
+              <tt>false</tt>. Values are case-sensitive.
+            
+</dd>
+<dt>Complex:</dt>
+<dd>
+              A multi-value attribute containing any combination of other attributes. Complex attributes are defined by listing the child attributes and their types. For most Complex Fields, the <tt>value</tt> sub-field contains the Major Value of that field (i.e. the primary piece of contact information described by that field), and the other fields provide additional meta-data.
+            
+
+</dd>
+</dl></blockquote><p>
+        
+</p>
+<a name="entry-schema"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.2"></a><h3>7.2.&nbsp;
+entry Element</h3>
+
+<p>
+          Unless otherwise specified, all fields are optional and of type xs:string. Also, unless specified, all field values MUST NOT contain any newline characters (\r or \n).
+        
+</p>
+<a name="anchor16"></a><br /><hr />
+
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.2.1"></a><h3>7.2.1.&nbsp;
+Singular Fields</h3>
+
+<p>
+            </p>
+<blockquote class="text"><dl>
+<dt>id:</dt>
+<dd>
+                Unique identifier for the Contact. Each Contact returned MUST include a non-empty <tt>id</tt> value. This identifier MUST be unique across this user's entire set of Contacts, but MAY not be unique across multiple users' data. It MUST be a stable ID that does not change when the same contact is returned in subsequent requests. For instance, an e-mail address is not a good id, because the same person may use a different e-mail address in the future. Usually, in internal database ID will be the right choice here, e.g. <tt>"12345"</tt>.
+              
+
+</dd>
+<dt>displayName:</dt>
+<dd>
+                The name of this Contact, suitable for display to end-users. Each Contact returned MUST include a non-empty <tt>displayName</tt> value. The name SHOULD be the full name of the Contact being described if known (e.g. <tt>Joseph Smarr</tt> or <tt>Mr. Joseph Robert Smarr, Esq.</tt>), but MAY be a username or handle, if that is all that is available (e.g. <tt>jsmarr</tt>). The value provided SHOULD be the primary textual label by which this Contact is normally displayed by the Service Provider when presenting it to end-users.
+              
+</dd>
+
+<dt>name:</dt>
+<dd>
+                The broken-out components and fully formatted version of the contact's real name, as described in <a class='info' href='http://portablecontacts.net/draft-spec.html#name_element'>Section&nbsp;7.3<span> (</span><span class='info'>name Element</span><span>)</span></a>.
+              
+</dd>
+<dt>nickname:</dt>
+<dd>
+                The casual way to address this Contact in real life, e.g. "Bob" or "Bobby" instead of "Robert". This field SHOULD NOT be used to represent a user's username (e.g. <tt>jsmarr</tt> or <tt>daveman692</tt>); the latter should be represented by the <tt>preferredUsername</tt> field.
+              
+
+</dd>
+<dt>published:</dt>
+<dd>
+                The date this Contact was first added to the user's address book or friends list (i.e. the creation date of this entry). The value MUST be a valid xs:dateTime (e.g. <tt>2008-01-23T04:56:22Z</tt>).
+              
+</dd>
+<dt>updated:</dt>
+<dd>
+                The most recent date the details of this Contact were updated (i.e. the modified date of this entry). The value MUST be a valid xd:dateTime (e.g. <tt>2008-01-23T04:56:22Z</tt>). If this Contact has never been modified since its initial creation, the value MUST be the same as the value of <tt>published</tt>. Note the <tt>updatedSince</tt> Query Parameter described in <a class='info' href='http://portablecontacts.net/draft-spec.html#query-params'>Section&nbsp;6.3<span> (</span><span class='info'>Query Parameters</span><span>)</span></a> can be used to select only contacts whose <tt>updated</tt> value is equal to or more recent than a given xs:dateTime. This enables Consumers to repeatedly access a user's data and only request newly added or updated contacts since the last access time.
+              
+
+</dd>
+<dt>birthday:</dt>
+<dd>
+                The birthday of this contact. The value MUST be a valid xs:date (e.g. <tt>1975-02-14</tt>. The year value MAY be set to <tt>0000</tt> when the age of the Contact is private or the year is not available.
+              
+</dd>
+<dt>anniversary:</dt>
+<dd>
+                The wedding anniversary of this contact. The value MUST be a valid xs:date (e.g. <tt>1975-02-14</tt>. The year value MAY be set to <tt>0000</tt> when the year is not available.
+              
+
+</dd>
+<dt>gender:</dt>
+<dd>
+                The gender of this contact. Service Providers SHOULD return one of the following Canonical Values, if appropriate: <tt>male</tt>, <tt>female</tt>, or <tt>undisclosed</tt>, and MAY return a different value if it is not covered by one of these Canonical Values.
+              
+</dd>
+<dt>note:</dt>
+<dd>
+                Notes about this contact, with an unspecified meaning or usage (normally contact notes by the user about this contact). This field MAY contain newlines.
+              
+
+</dd>
+<dt>preferredUsername:</dt>
+<dd>
+                The preferred username of this contact on sites that ask for a username (e.g. <tt>jsmarr</tt> or <tt>daveman692</tt>). This field may be more useful for describing the owner (i.e. the value when /@me/@self is requested) than the user's contacts, e.g. Consumers MAY wish to use this value to pre-populate a username for this user when signing up for a new service.
+              
+</dd>
+<dt>utcOffset:</dt>
+<dd>
+                The offset from UTC of this Contact's current time zone, as of the time this response was returned. The value MUST conform to the offset portion of xs:dateTime, e.g. <tt>-08:00</tt>. Note that this value MAY change over time due to daylight saving time, and is thus meant to signify only the current value of the user's timezone offset.
+              
+
+</dd>
+<dt>connected:</dt>
+<dd>
+                Boolean value indicating whether the user and this Contact have established a bi-directionally asserted connection of some kind on the Service Provider's service. The value MUST be either <tt>true</tt> or <tt>false</tt>. The value MUST be true if and only if there is at least one value for the <tt>relationship</tt> field, described below, and is thus intended as a summary value indicating that some type of bi-directional relationship exists, for Consumers that aren't interested in the specific nature of that relationship. For traditional address books, in which a user stores information about other contacts without their explicit acknowledgment, or for services in which users choose to "follow" other users without requiring mutual consent, this value will always be false.
+              
+</dd>
+</dl></blockquote><p>
+            The following additional Singular Fields are defined, based on their specification in OpenSocial <a class='info' href='http://portablecontacts.net/draft-spec.html#OpenSocial'>[OpenSocial]<span> (</span><span class='info'>Panzer, J., &ldquo;OpenSocial 0.8.1 RESTful Protocol Specification,&rdquo; .</span><span>)</span></a>:
+            <tt>aboutMe</tt>,
+            <tt>bodyType</tt>,
+            <tt>currentLocation</tt>,
+            <tt>drinker</tt>,
+            <tt>ethnicity</tt>,
+            <tt>fashion</tt>,
+            <tt>happiestWhen</tt>,
+            <tt>humor</tt>,
+            <tt>livingArrangement</tt>,
+            <tt>lookingFor</tt>,
+            <tt>profileSong</tt>,
+            <tt>profileVideo</tt>,
+            <tt>relationshipStatus</tt>,
+            <tt>religion</tt>,
+            <tt>romance</tt>,
+            <tt>scaredOf</tt>,
+            <tt>sexualOrientation</tt>,
+            <tt>smoker</tt>, and
+            <tt>status</tt>.
+          
+
+</p>
+<a name="anchor17"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.2.2"></a><h3>7.2.2.&nbsp;
+Plural Fields</h3>
+
+<p>
+            Unless specified otherwise, all Plural Fields have the same three standard sub-fields:
+            </p>
+<blockquote class="text"><dl>
+<dt>value:</dt>
+<dd>
+
+                The primary value of this field, e.g. the actual e-mail address, phone number, or URL. When specifying a <tt>sortBy</tt> field in the Query Parameters for a Plural Field, the default meaning is to sort based on this <tt>value</tt> sub-field. Each non-empty Plural Field value MUST contain at least the value sub-field, but all other sub-fields are optional.
+              
+</dd>
+<dt>type:</dt>
+<dd>
+                The type of field for this instance, usually used to label the preferred function of the given contact information. Unless otherwise specified, this string value specifies Canonical Values of <tt>work</tt>, <tt>home</tt>, and <tt>other</tt>.
+              
+
+</dd>
+<dt>primary:</dt>
+<dd>
+                A Boolean value indicating whether this instance of the Plural Field is the primary or preferred value of for this field, e.g. the preferred mailing address or primary e-mail address. Service Providers MUST NOT mark more than one instance of the same Plural Field as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
+              
+</dd>
+</dl></blockquote><p>
+            When returning Plural Fields, Service Providers SHOULD canonicalize the value returned, if appropriate (e.g. for e-mail addresses and URLs). Providers MAY return the same value more than once with different types (e.g. the same e-mail address may used for work and home), but SHOULD NOT return the same (type, value) combination more than once per Plural Field, as this complicates processing by the Consumer.
+
+            </p>
+<blockquote class="text"><dl>
+<dt>emails:</dt>
+<dd>
+                E-mail address for this Contact. The value SHOULD be canonicalized by the Service Provider, e.g. <tt>joseph@plaxo.com</tt> instead of <tt>joseph@PLAXO.COM</tt>.
+              
+
+</dd>
+<dt>urls:</dt>
+<dd>
+                URL of a web page relating to this Contact. The value SHOULD be canonicalized by the Service Provider, e.g. <tt>http://josephsmarr.com/about/</tt> instead of <tt>JOSEPHSMARR.COM/about/</tt>. In addition to the standard Canonical Values for <tt>type</tt>, this field also defines the additional Canonical Values <tt>blog</tt> and <tt>profile</tt>.
+              
+
+</dd>
+<dt>phoneNumbers:</dt>
+<dd>
+                Phone number for this Contact. No canonical value is assumed here. In addition to the standard Canonical Values for <tt>type</tt>, this field also defines the additional Canonical Values <tt>mobile</tt>, <tt>fax</tt>, and <tt>pager</tt>.
+              
+</dd>
+
+<dt>ims:</dt>
+<dd>
+                Instant messaging address for this Contact. No official canonicalization rules exist for all instant messaging addresses, but Service Providers SHOULD remove all whitespace and convert the address to lowercase, if this is appropriate for the service this IM address is used for. Instead of the standard Canonical Values for <tt>type</tt>, this field defines the following Canonical Values to represent currently popular IM services: <tt>aim</tt>, <tt>gtalk</tt>, <tt>icq</tt>, <tt>xmpp</tt>, <tt>msn</tt>, <tt>skype</tt>, <tt>qq</tt>, and <tt>yahoo</tt>.
+              
+
+</dd>
+<dt>photos:</dt>
+<dd>
+                URL of a photo of this contact. The value SHOULD be a canonicalized URL, and MUST point to an actual image file (e.g. a GIF, JPEG, or PNG image file) rather than to a web page containing an image. Service Providers MAY return the same image at different sizes, though it is recognized that no standard for describing images of various sizes currently exists. Note that this field SHOULD NOT be used to send down arbitrary photos taken by this user, but specifically profile photos of the contact suitable for display when describing the contact.
+              
+</dd>
+<dt>tags:</dt>
+<dd>
+                A user-defined category or label for this contact, e.g. "favorite" or "web20". These values SHOULD be case-insensitive, and there SHOULD NOT be multiple tags provided for a given contact that differ only in case. Note that this field is a Simple Field, meaning each instance consists only of a string value.
+              
+</dd>
+<dt>relationships:</dt>
+<dd>
+                A bi-directionally asserted relationship type that was established between the user and this contact by the Service Provider. The value SHOULD conform to one of the XFN relationship values (e.g. kin, friend, contact, etc.) if appropriate, but MAY be an alternative value if needed. Note this field is a parallel set of category labels to the <tt>tags</tt> field, but relationships MUST have been bi-directionally confirmed, whereas tags are asserted by the user without acknowledgment by this Contact. Note that this field is a Simple Field, meaning each instance consists only of a string value.
+              
+
+</dd>
+<dt>addresses:</dt>
+<dd>
+                A physical mailing address for this Contact, as described in <a class='info' href='http://portablecontacts.net/draft-spec.html#address_element'>Section&nbsp;7.4<span> (</span><span class='info'>address Element</span><span>)</span></a>.
+              
+</dd>
+<dt>organizations:</dt>
+<dd>
+
+                A current or past organizational affiliation of this Contact, as described in <a class='info' href='http://portablecontacts.net/draft-spec.html#organization_element'>Section&nbsp;7.5<span> (</span><span class='info'>organization Element</span><span>)</span></a>.
+              
+</dd>
+<dt>accounts:</dt>
+<dd>
+                An online account held by this Contact, as described in <a class='info' href='http://portablecontacts.net/draft-spec.html#account_element'>Section&nbsp;7.6<span> (</span><span class='info'>account Element</span><span>)</span></a>.
+              
+
+</dd>
+</dl></blockquote><p>
+            The following additional Plural Fields are defined, based on their specification in OpenSocial:
+            <tt>activities</tt>,
+            <tt>books</tt>,
+            <tt>cars</tt>,
+            <tt>children</tt>,
+            <tt>food</tt>,
+            <tt>heroes</tt>,
+            <tt>interests</tt>,
+            <tt>jobInterests</tt>,
+            <tt>languages</tt>,
+            <tt>languagesSpoken</tt>,
+            <tt>movies</tt>,
+            <tt>music</tt>,
+            <tt>pets</tt>,
+            <tt>politicalViews</tt>,
+            <tt>quotes</tt>,
+            <tt>sports</tt>,
+            <tt>turnOffs</tt>,
+            <tt>turnOns</tt>, and
+            <tt>tvShows</tt>.
+          
+
+</p>
+<a name="name_element"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.3"></a><h3>7.3.&nbsp;
+name Element</h3>
+
+<p>
+          The components of the contact's real name. Providers MAY return just the full name as a single string in the <tt>formatted</tt> sub-field, or they MAY return just the individual component fields using the other sub-fields, or they MAY return both. If both variants are returned, they SHOULD be describing the same name, with the formatted name indicating how the component fields should be combined. 
+          </p>
+<blockquote class="text"><dl>
+
+<dt>formatted:</dt>
+<dd>
+              The full name, including all middle names, titles, and suffixes as appropriate, formatted for display (e.g. <tt>Mr. Joseph Robert Smarr, Esq.</tt>). This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+            
+</dd>
+<dt>familyName:</dt>
+<dd>
+              The family name of this Contact, or "Last Name" in most Western languages (e.g. <tt>Smarr</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+            
+
+</dd>
+<dt>givenName:</dt>
+<dd>
+              The given name of this Contact, or "First Name" in most Western languages (e.g. <tt>Joseph</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+            
+</dd>
+<dt>middleName:</dt>
+<dd>
+              The middle name(s) of this Contact (e.g. <tt>Robert</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+            
+
+</dd>
+<dt>honorificPrefix:</dt>
+<dd>
+              The honorific prefix(es) of this Contact, or "Title" in most Western languages (e.g. <tt>Mr.</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+            
+</dd>
+<dt>honorificSuffix:</dt>
+<dd>
+              The honorifix suffix(es) of this Contact, or "Suffix" in most Western languages (e.g. <tt>Esq.</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+            
+
+</dd>
+</dl></blockquote><p>
+        
+</p>
+<a name="address_element"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.4"></a><h3>7.4.&nbsp;
+address Element</h3>
+
+<p>
+          The components of a physical mailing address. Service Providers MAY return just the full address as a single string in the <tt>formatted</tt> sub-field, or they MAY return just the individual component fields using the other sub-fields, or they MAY return both. If both variants are returned, they SHOULD be describing the same address, with the formatted address indicating how the component fields should be combined.
+          </p>
+
+<blockquote class="text"><dl>
+<dt>formatted:</dt>
+<dd>
+              The full mailing address, formatted for display or use with a mailing label. This field MAY contain newlines. This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+            
+</dd>
+<dt>streetAddress:</dt>
+<dd>
+              The full street address component, which may include house number, street name, PO BOX, and multi-line extended street address information. This field MAY contain newlines.
+            
+</dd>
+<dt>locality:</dt>
+<dd>
+              The city or locality component.
+            
+
+</dd>
+<dt>region:</dt>
+<dd>
+              The state or region component.
+            
+</dd>
+<dt>postalCode:</dt>
+<dd>
+              The zipcode or postal code component.
+            
+</dd>
+<dt>country:</dt>
+<dd>
+              The country name component.
+            
+
+</dd>
+</dl></blockquote><p>
+        
+</p>
+<a name="organization_element"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.5"></a><h3>7.5.&nbsp;
+organization Element</h3>
+
+<p>
+          Describes a current or past organizational affiliation of this contact. Service Providers that support only a single Company Name and Job Title field should represent them with a single <tt>organization</tt> element with <tt>name</tt> and <tt>title</tt> properties, respectively.
+          </p>
+
+<blockquote class="text"><dl>
+<dt>name:</dt>
+<dd>
+              The name of the organization (e.g. company, school, or other organization). This field MUST have a non-empty value for each organization returned. This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+            
+</dd>
+<dt>department:</dt>
+<dd>
+              The department within this organization.
+            
+</dd>
+<dt>title:</dt>
+<dd>
+              The job title or role within this organization.
+            
+
+</dd>
+<dt>type:</dt>
+<dd>
+              The type of organization, with Canonical Values <tt>job</tt> and <tt>school</tt>.
+            
+</dd>
+<dt>startDate:</dt>
+<dd>
+              The date this Contact joined this organization. This value SHOULD be a valid xs:date if possible, but MAY be an unformatted string, since it is recognized that this field is often presented as free-text.
+            
+
+</dd>
+<dt>endDate:</dt>
+<dd>
+              The date this Contact left this organization or the role specified by title within this organization. This value SHOULD be a valid xs:date if possible, but MAY be an unformatted string, since it is recognized that this field is often presented as free-text.
+            
+</dd>
+<dt>location:</dt>
+<dd>
+              The physical location of this organization. This may be a complete address, or an abbreviated location like "San Francisco".
+            
+</dd>
+<dt>description:</dt>
+<dd>
+              A textual description of the role this Contact played in this organization. This field MAY contain newlines.
+            
+
+</dd>
+</dl></blockquote><p>
+        
+</p>
+<a name="account_element"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.6"></a><h3>7.6.&nbsp;
+account Element</h3>
+
+<p>
+          Describes an account held by this Contact, which MAY be on the Service Provider's service, or MAY be on a different service. Consumers SHOULD NOT assume that this account has been verified by the Service Provider to actually belong to this Contact. For each account, the <tt>domain</tt> is the top-most authoritative domain for this account, e.g. <tt>yahoo.com</tt> or <tt>reader.google.com</tt>, and MUST be non-empty. Each account must also contain a non-empty value for either <tt>username</tt> or <tt>userid</tt>, and MAY contain both, in which case the two values MUST be for the same account. These accounts can be used to determine if a user on one service is also known to be the same person on a different service, to facilitate connecting to people the user already knows on different services. If Consumers want to turn these accounts into profile URLs, they can use an open-source library like <a class='info' href='http://portablecontacts.net/draft-spec.html#google-sgnodemapper'>[google&#8209;sgnodemapper]<span> (</span><span class='info'>Fitzpatrick, B., &ldquo;Social Graph Node Mapper,&rdquo; .</span><span>)</span></a>.
+          </p>
+
+<blockquote class="text"><dl>
+<dt>domain:</dt>
+<dd>
+              The top-most authoritative domain for this account, e.g. "twitter.com". This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+            
+</dd>
+<dt>username:</dt>
+<dd>
+              An alphanumeric user name, usually chosen by the user, e.g. "jsmarr".
+            
+</dd>
+<dt>userid:</dt>
+<dd>
+              A user ID number, usually chosen automatically, and usually numeric but sometimes alphanumeric, e.g. "12345" or "1Z425A".
+            
+
+</dd>
+</dl></blockquote><p>
+        
+</p>
+<a name="anchor18"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
+Example</h3>
+
+<p>
+        Here is a sample request and response that illustrates much of Portable Contacts. For simplicity, authorization information is not shown in the request.
+      
+</p>
+<p>Sample request (via HTTP GET):
+
+</p>
+<p>
+        </p>
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>
+http://sample.site.org/path/to/api/@me/@all?startIndex=10&amp;count=10&amp;sortBy=displayName
+</pre></div><p>
+
+      
+</p>
+<p>Sample response (JSON):
+</p>
+<p>
+        </p>
+
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>
+{
+  "startIndex": 10,
+  "itemsPerPage": 10,
+  "totalResults": 12,
+  "entry": [
+    {
+      "id": "123",
+      "displayName": "Minimal Contact"
+    },
+    {
+      "id": "703887",
+      "displayName": "Mork Hashimoto",
+      "name": {
+        "familyName": "Hashimoto",
+        "givenName": "Mork"
+      },
+      "birthday": "0000-01-16",
+      "gender": "male",
+      "drinker": "heavily",
+      "tags": [
+        "plaxo guy",
+        "favorite"
+      ],
+      "emails": [
+        {
+          "value": "mhashimoto-04@plaxo.com",
+          "type": "work",
+          "primary": "true"
+        },
+        {
+          "value": "mhashimoto-04@plaxo.com",
+          "type": "home"
+        },
+        {
+          "value": "mhashimoto@plaxo.com",
+          "type": "home"
+        }
+      ],
+      "urls": [
+        {
+          "value": "http://www.seeyellow.com",
+          "type": "work"
+        },
+        {
+          "value": "http://www.angryalien.com",
+          "type": "home"
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "value": "KLONDIKE5",
+          "type": "work"
+        },
+        {
+          "value": "650-123-4567",
+          "type": "mobile"
+        }
+      ],
+      "photos": [
+        {
+          "value": "http://sample.site.org/photos/12345.jpg",
+          "type": "thumbnail"
+        }
+      ],
+      "ims": [
+        {
+          "value": "plaxodev8",
+          "type": "aim"
+        }
+      ],
+      "addresses": [
+        {
+          "type": "home",
+          "streetAddress": "742 Evergreen Terrace\nSuite 123",
+          "locality": "Springfield",
+          "region": "VT",
+          "postalCode": "12345",
+          "country": "USA",
+          "formatted": "742 Evergreen Terrace\nSuite 123\nSpringfield, VT 12345 USA"
+        }
+      ],
+      "organizations": [
+        {
+          "name": "Burns Worldwide",
+          "title": "Head Bee Guy"
+        }
+      ],
+      "accounts": [
+        {
+          "domain": "plaxo.com",
+          "userid": "2706"
+        }
+      ]
+    }
+  ]
+}
+</pre></div><p>
+
+      
+</p>
+<p>Sample response (XML):
+</p>
+<p>
+        </p>
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>
+&lt;response&gt;
+ &lt;startIndex&gt;10&lt;/startIndex&gt;
+ &lt;itemsPerPage&gt;10&lt;/itemsPerPage&gt;
+ &lt;totalResults&gt;12&lt;/totalResults&gt;
+ &lt;entry&gt;
+  &lt;id&gt;123&lt;/id&gt;
+  &lt;displayName&gt;Minimal Contact&lt;/displayName&gt;
+ &lt;/entry&gt;
+ &lt;entry&gt;
+  &lt;id&gt;703887&lt;/id&gt;
+  &lt;displayName&gt;Mork Hashimoto&lt;/displayName&gt;
+  &lt;name&gt;
+   &lt;familyName&gt;Hashimoto&lt;/familyName&gt;
+   &lt;givenName&gt;Mork&lt;/givenName&gt;
+  &lt;/name&gt;
+  &lt;birthday&gt;0000-01-16&lt;/birthday&gt;
+  &lt;gender&gt;male&lt;/gender&gt;
+  &lt;drinker&gt;heavily&lt;/drinker&gt;
+  &lt;tags&gt;plaxo guy&lt;/tags&gt;
+  &lt;tags&gt;favorite&lt;/tags&gt;
+  &lt;emails&gt;
+   &lt;value&gt;mhashimoto-04@plaxo.com&lt;/value&gt;
+   &lt;type&gt;work&lt;/type&gt;
+   &lt;primary&gt;true&lt;/primary&gt;
+  &lt;/emails&gt;
+  &lt;emails&gt;
+   &lt;value&gt;mhashimoto-04@plaxo.com&lt;/value&gt;
+   &lt;type&gt;home&lt;/type&gt;
+  &lt;/emails&gt;
+  &lt;emails&gt;
+   &lt;value&gt;mhashimoto@plaxo.com&lt;/value&gt;
+   &lt;type&gt;home&lt;/type&gt;
+  &lt;/emails&gt;
+  &lt;urls&gt;
+   &lt;value&gt;http://www.seeyellow.com&lt;/value&gt;
+   &lt;type&gt;work&lt;/type&gt;
+  &lt;/urls&gt;
+  &lt;urls&gt;
+   &lt;value&gt;http://www.angryalien.com&lt;/value&gt;
+   &lt;type&gt;home&lt;/type&gt;
+  &lt;/urls&gt;
+  &lt;phoneNumbers&gt;
+   &lt;value&gt;KLONDIKE5&lt;/value&gt;
+   &lt;type&gt;work&lt;/type&gt;
+  &lt;/phoneNumbers&gt;
+  &lt;phoneNumbers&gt;
+   &lt;value&gt;650-123-4567&lt;/value&gt;
+   &lt;type&gt;mobile&lt;/type&gt;
+  &lt;/phoneNumbers&gt;
+  &lt;photos&gt;
+   &lt;value&gt;http://sample.site.org/photos/12345.jpg&lt;/value&gt;
+   &lt;type&gt;thumbnail&lt;/type&gt;
+  &lt;/photos&gt;
+  &lt;ims&gt;
+   &lt;value&gt;plaxodev8&lt;/value&gt;
+   &lt;type&gt;aim&lt;/type&gt;
+  &lt;/ims&gt;
+  &lt;addresses&gt;
+   &lt;type&gt;home&lt;/type&gt;
+   &lt;streetAddress&gt;&lt;![CDATA[742 Evergreen Terrace
+Suite 123]]&gt;&lt;/streetAddress&gt;
+   &lt;locality&gt;Springfield&lt;/locality&gt;
+   &lt;region&gt;VT&lt;/region&gt;
+   &lt;postalCode&gt;12345&lt;/postalCode&gt;
+   &lt;country&gt;USA&lt;/country&gt;
+   &lt;formatted&gt;&lt;![CDATA[742 Evergreen Terrace
+Suite 123
+Springfield, VT 12345 USA]]&gt;&lt;/formatted&gt;
+  &lt;/addresses&gt;
+  &lt;organizations&gt;
+   &lt;name&gt;Burns Worldwide&lt;/name&gt;
+   &lt;title&gt;Head Bee Guy&lt;/title&gt;
+  &lt;/organizations&gt;
+  &lt;accounts&gt;
+   &lt;domain&gt;plaxo.com&lt;/domain&gt;
+   &lt;userid&gt;2706&lt;/userid&gt;
+  &lt;/accounts&gt;
+ &lt;/entry&gt;
+&lt;/response&gt;
+</pre></div><p>
+
+      
+</p>
+<a name="anchor19"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.B"></a><h3>Appendix B.&nbsp;
+
+Compatibility with OpenSocial</h3>
+
+<p>
+        This version of the Portable Contacts specification is currently wire-compatible with the overlapping portion of the OpenSocial RESTful Protocol version 0.8.1 <a class='info' href='http://portablecontacts.net/draft-spec.html#OpenSocial'>[OpenSocial]<span> (</span><span class='info'>Panzer, J., &ldquo;OpenSocial 0.8.1 RESTful Protocol Specification,&rdquo; .</span><span>)</span></a>. Specifically, <em>any compliant OpenSocial RESTful Protocol 0.8.1 Provider is also a compliant Portable Contacts Provider</em>, because they are specified to use the same Authorization methods (OAuth), Additional Path Information, Query Parameters, and Contact Schema. The OpenSocial and Portable Contacts communities chose to wire-align our respective specs in order to maximize widespread adoption of a single API for accessing people data.
+      
+
+</p>
+<p>
+        It is our intention to maintain this compatibility going forward, so long as it is feasible, and so long as the changes required are compatible with the Goals and Approach of this spec. Although Portable Contacts is an independent spec, with a more limited scope than OpenSocial, any proposed changes to either this Portable Contacts spec or the OpenSocial RESTful Protocol should be considered in the context of both communities, and we should strive not to break compatibility unless it is truly necessary, e.g. if the goals of the two communities diverge significantly in the future.
+      
+</p>
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>8.&nbsp;References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="OAuth Core 1.0">[OAuth Core 1.0]</a></td>
+<td class="author-text">OAuth Core Workgroup, &ldquo;<a href="http://oauth.net/core/1.0">OAuth Core 1.0</a>.&rdquo;</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="OAuth Discovery">[OAuth Discovery]</a></td>
+<td class="author-text">Eran Hammer-Lahav, E., &ldquo;<a href="http://oauth.net/discovery/">OAuth Discovery 1.0</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenSearch">[OpenSearch]</a></td>
+<td class="author-text">Clinton, D., &ldquo;<a href="http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3">OpenSearch 1.1</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenSocial">[OpenSocial]</a></td>
+<td class="author-text">Panzer, J., &ldquo;<a href="http://www.opensocial.org/Technical-Resources/opensocial-spec-v081/restful-protocol">OpenSocial 0.8.1 RESTful Protocol Specification</a>.&rdquo;</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="RFC2119">[RFC2119]</a></td>
+<td class="author-text">Bradner, B., &ldquo;<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>,&rdquo; RFC&nbsp;2119.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2425">[RFC2425]</a></td>
+<td class="author-text">Howes, T., &ldquo;<a href="http://tools.ietf.org/html/rfc2425">A MIME Content-Type for Directory Information</a>,&rdquo; RFC&nbsp;2425.</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="RFC2606">[RFC2606]</a></td>
+<td class="author-text">Eastlake, D. and A. Panitz, &ldquo;<a href="http://tools.ietf.org/html/rfc2606">Reserved Top Level DNS Names</a>,&rdquo; RFC&nbsp;2606.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2616">[RFC2616]</a></td>
+<td class="author-text">Fielding, R., &ldquo;<a href="http://tools.ietf.org/html/rfc2616">Hypertext Transfer Protocol -- HTTP/1.1</a>,&rdquo; RFC&nbsp;2616.</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="RFC2617">[RFC2617]</a></td>
+<td class="author-text">Franks, J., &ldquo;<a href="http://tools.ietf.org/html/rfc2617">HTTP Authentication: Basic and Digest Access Authentication</a>,&rdquo; RFC&nbsp;2617.</td></tr>
+<tr><td class="author-text" valign="top"><a name="XRDS-Simple">[XRDS-Simple]</a></td>
+<td class="author-text">Hammer-Lahav, E., &ldquo;<a href="http://xrds-simple.net/core/1.0/">XRDS-Simple 1.0</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="google-sgnodemapper">[google-sgnodemapper]</a></td>
+
+<td class="author-text">Fitzpatrick, B., &ldquo;<a href="http://code.google.com/p/google-sgnodemapper/">Social Graph Node Mapper</a>.&rdquo;</td></tr>
+</table>
+
+<a name="rfc.authors"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="http://portablecontacts.net/draft-spec.html#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>Author's Address</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Joseph Smarr</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Plaxo</td></tr>
+
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:joseph@plaxo.com">joseph@plaxo.com</a></td></tr>
+</table>
+</body></html>

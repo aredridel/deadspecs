@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Portable Contacts</title>
+  <style>
+    body {
+      background: #f2f2f2;
+      color: #555555;
+      font-family: "Trebuchet MS", Geneva, Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      margin: 0;
+    }
+    main {
+      background: #ffffff;
+      box-sizing: border-box;
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 1em;
+    }
+    footer {
+      font-size: 0.8125em;
+      max-width: 900px;
+      margin: 1em auto;
+      text-align: center;
+    }
+    footer a {
+      color: #555555;
+    }
+    h1 {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+    h2 {
+      font-size: 1em;
+      margin: 2em 0 0;
+    }
+    strong {
+      color: #265fc2;
+    }
+    p {
+      margin-top: 0;
+    }
+
+    @media only screen and (min-width: 800px) {
+      main {
+        padding: 2em 8em;
+      }
+      h1 {
+        margin-bottom: 1.5em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Portable Contacts</h1>
+
+    <h2>About</h2>
+    <p>The vision for Portable Contacts has been around for a long time. Sites large and small share the goal of providing users a secure way to access their address books and friends lists without having to take their credentials or scrape their data. But only in recent weeks has it begun to feel that <strong>now is the right time to rally the community and the industry to work together to make this vision real</strong> by developing an open spec for exchange of contact info that everyone can embrace.</p>
+
+    <h2>Why now?</h2>
+    <p>The momentum began building for 'data portability' last year, and we are now at a point where there is strong support for the principle that <strong>users should be in control of their data</strong> and have the freedom to access it from across the web. And the major players have all recognized that they and their users are better off with secure contacts APIs (rather than having third-party services ask for users' credentials in order to scrape their data). As a result, we're seeing major Internet companies making contacts APIs available, such as Google's GData Contacts API, Yahoo's Address Book API, and Microsoft's Live Contacts API (with more to come). Not surprisingly though, each of these APIs is unique and proprietary. We believe this creates the ideal conditions for developing a common, open spec that everyone can benefit from. Just as OAuth has provided a standard to unify the various proprietary schemes for delegated authorization, we believe we can do the same thing for securely sharing address book and friends list data.</p>
+
+    <h2>Goals</h2>
+    <p>The goal of Portable Contacts is to make it easier for developers to give their users a secure way to access the address books and friends lists they have built up all over the web. Specifically, we seek to create:</p>
+    <ul>
+      <li>A common access pattern and contact schema that any site can provide</li>
+      <li>Well-specified authentication and access rules</li>
+      <li>Standard libraries that can work with any site</li>
+      <li>and <strong>absolutely minimal complexity</strong>, with the lightest possible toolchain requirements for developers.</li>
+    </ul>
+
+    <p>A measure of our success will be the elimination of the "password anti-pattern," by making it far easier to implement Portable Contacts than to engage in scraping, as well as a dramatic increase in the number of sites that both provide and consume who-you-know data.</p>
+
+    <h2>Our Approach</h2>
+    <p>Our design is focused around ease of adoption, which means a few things. First, <strong>our emphasis is on simplicity of design</strong> and targeted use cases. For example, version 1 is simply about access, and defers for now on the more complex issues around update and sync. Second, we're taking a modern approach to who-you-know data by unifying traditional contact info and social network data, in order to properly represent the current diversity of the social web ecosystem. Third, we're using existing standards wherever possible, including vCard, OpenSocial, XRDS-Simple, OAuth, etc. And lastly, we're designing something that should be easy for current service providers to adopt. We started by reviewing all the major existing contacts APIs and targeting the capabilities that they all share and provide. We believe this pragmatic balance is the best and quickest way to achieve our shared goal of widespread adoption.</p>
+
+    <p>Here is the current <a href="draft-spec.html">draft spec</a>, the <a href="http://wiki.portablecontacts.net/">wiki</a>, and the <a href="http://groups.google.com/group/portablecontacts">mailing list</a>.</p>
+  </main>
+
+  <footer>
+    This project is being undertaken by <span class="vcard"><a class="url fn" href="http://josephsmarr.com/">Joseph Smarr</a></span>, <span class="vcard"><a class="url fn" href="http://factoryjoe.com/blog">Chris Messina</a></span>, and others.
+  </footer>
+ 
+</body>
+</html>

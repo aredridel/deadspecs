@@ -1,0 +1,1200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head><title>Implementers' Draft: Portable Contacts 1.0 Draft C - Schema Only</title>
+<meta http-equiv="Expires" content="Fri, 25 Sep 2009 22:07:07 +0000">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="description" content="Portable Contacts 1.0 Draft C - Schema Only">
+<meta name="generator" content="xml2rfc v1.33 (http://xml.resource.org/)">
+<style type='text/css'><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+</head>
+<body><style type="text/css"><!--
+        body {
+                font-family: verdana, charcoal, helvetica, arial, sans-serif;
+                font-size: small; color: #000; background-color: #FFF;
+                margin: 2em;
+        }
+        h1, h2, h3, h4, h5, h6 {
+                font-family: helvetica, monaco, "MS Sans Serif", arial, sans-serif;
+                font-weight: bold; font-style: normal;
+        }
+        h1 { color: #900; background-color: transparent; text-align: right; }
+        h3 { color: #333; background-color: transparent; }
+
+        td.RFCbug {
+                font-size: x-small; text-decoration: none;
+                width: 30px; height: 30px; padding-top: 2px;
+                text-align: justify; vertical-align: middle;
+                background-color: #000;
+        }
+        td.RFCbug span.RFC {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: bold; color: #666;
+        }
+        td.RFCbug span.hotText {
+                font-family: charcoal, monaco, geneva, "MS Sans Serif", helvetica, verdana, sans-serif;
+                font-weight: normal; text-align: center; color: #FFF;
+        }
+
+        table.TOCbug { width: 30px; height: 15px; }
+        td.TOCbug {
+                text-align: center; width: 30px; height: 15px;
+                color: #FFF; background-color: #900;
+        }
+        td.TOCbug a {
+                font-family: monaco, charcoal, geneva, "MS Sans Serif", helvetica, sans-serif;
+                font-weight: bold; font-size: x-small; text-decoration: none;
+                color: #FFF; background-color: transparent;
+        }
+
+        td.header {
+                font-family: arial, helvetica, sans-serif; font-size: x-small;
+                vertical-align: top; width: 33%;
+                color: #FFF; background-color: #666;
+        }
+        td.author { font-weight: bold; font-size: x-small; margin-left: 4em; }
+        td.author-text { font-size: x-small; }
+
+        /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+        a.info {
+                /* This is the key. */
+                position: relative;
+                z-index: 24;
+                text-decoration: none;
+        }
+        a.info:hover {
+                z-index: 25;
+                color: #FFF; background-color: #900;
+        }
+        a.info span { display: none; }
+        a.info:hover span.info {
+                /* The span will display just on :hover state. */
+                display: block;
+                position: absolute;
+                font-size: smaller;
+                top: 2em; left: -5em; width: 15em;
+                padding: 2px; border: 1px solid #333;
+                color: #900; background-color: #EEE;
+                text-align: left;
+        }
+
+        a { font-weight: bold; }
+        a:link    { color: #900; background-color: transparent; }
+        a:visited { color: #633; background-color: transparent; }
+        a:active  { color: #633; background-color: transparent; }
+
+        p { margin-left: 2em; margin-right: 2em; }
+        p.copyright { font-size: x-small; }
+        p.toc { font-size: small; font-weight: bold; margin-left: 3em; }
+        table.toc { margin: 0 0 0 3em; padding: 0; border: 0; vertical-align: text-top; }
+        td.toc { font-size: small; font-weight: bold; vertical-align: text-top; }
+
+        ol.text { margin-left: 2em; margin-right: 2em; }
+        ul.text { margin-left: 2em; margin-right: 2em; }
+        li      { margin-left: 3em; }
+
+        /* RFC-2629 <spanx>s and <artwork>s. */
+        em     { font-style: italic; }
+        strong { font-weight: bold; }
+        dfn    { font-weight: bold; font-style: normal; }
+        cite   { font-weight: normal; font-style: normal; }
+        tt     { color: #036; }
+        tt, pre, pre dfn, pre em, pre cite, pre span {
+                font-family: "Courier New", Courier, monospace; font-size: small;
+        }
+        pre {
+                text-align: left; padding: 4px;
+                color: #000; background-color: #CCC;
+        }
+        pre dfn  { color: #900; }
+        pre em   { color: #66F; background-color: #FFC; font-weight: normal; }
+        pre .key { color: #33C; font-weight: bold; }
+        pre .id  { color: #900; }
+        pre .str { color: #000; background-color: #CFF; }
+        pre .val { color: #066; }
+        pre .rep { color: #909; }
+        pre .oth { color: #000; background-color: #FCF; }
+        pre .err { background-color: #FCC; }
+
+        /* RFC-2629 <texttable>s. */
+        table.all, table.full, table.headers, table.none {
+                font-size: small; text-align: center; border-width: 2px;
+                vertical-align: top; border-collapse: collapse;
+        }
+        table.all, table.full { border-style: solid; border-color: black; }
+        table.headers, table.none { border-style: none; }
+        th {
+                font-weight: bold; border-color: black;
+                border-width: 2px 2px 3px 2px;
+        }
+        table.all th, table.full th { border-style: solid; }
+        table.headers th { border-style: none none solid none; }
+        table.none th { border-style: none; }
+        table.all td {
+                border-style: solid; border-color: #333;
+                border-width: 1px 2px;
+        }
+        table.full td, table.headers td, table.none td { border-style: none; }
+
+        hr { height: 1px; }
+        hr.insert {
+                width: 80%; border-style: none; border-width: 0;
+                color: #CCC; background-color: #CCC;
+        }
+--></style>
+
+
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
+<tbody><tr><td class="header">Implementers' Draft</td><td class="header">J. Smarr</td></tr>
+
+<tr><td class="header">&nbsp;</td><td class="header">Plaxo</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">August 5, 2008</td></tr>
+
+</tbody></table></td></tr></tbody></table>
+<h1><br>Portable Contacts 1.0 Draft C - Schema Only</h1>
+
+<h3>Abstract</h3>
+
+<p>
+        The Portable Contacts specification is designed to make it easier for developers to give their users a secure way to access the address books and friends lists they have built up all over the web. Specifically, it seeks to create a common access pattern and contact schema that any site can provide, well-specified authentication and access rules, standard libraries that can work with any site, and absolutely minimal complexity, with the lightest possible toolchain requirements for developers.
+
+</p>
+<p>
+        By far the easiest way to start understanding this spec is to jump to the example in the Appendix. The format and meaning of the response should be readily apparent, and the majority of this document is merely an attempt to formalize the details of what should be relatively clear from this example.
+
+
+</p>
+<p>
+        NOTE: This document specifies only the schema for an individual Contact as represented in Portable Contacts. It is indended for use with other projects that need to reference a standard Contact schema, but do not intend to provide the full discovery, authentication, and access protocol that the full Portable Contacts spec provides. This document is intended to remain a strict subset of the full Portable Contacts spec, and should never deviate in the details of the Contact schema. For convenience, this spec also defines a namespace and mime-type for use with Portable Contacts schema data.
+
+
+</p><a name="toc"></a><br><hr>
+<h3>Table of Contents</h3>
+<p class="toc">
+<a href="#anchor1">1.</a>&nbsp;
+Notation and Conventions<br>
+<a href="#anchor2">2.</a>&nbsp;
+Definitions<br>
+<a href="#xmlns">3.</a>&nbsp;
+
+XML Namespace<br>
+
+<a href="#mime">4.</a>&nbsp;
+MIME Media Types<br>
+<a href="#schema">5.</a>&nbsp;
+Contact Schema<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#structure">5.1.</a>&nbsp;
+Structure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#entry-schema">5.2.</a>&nbsp;
+entry Element<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor3">5.2.1.</a>&nbsp;
+Singular Fields<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor4">5.2.2.</a>&nbsp;
+Plural Fields<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#name_element">5.3.</a>&nbsp;
+name Element<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#address_element">5.4.</a>&nbsp;
+address Element<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#organization_element">5.5.</a>&nbsp;
+
+organization Element<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#account_element">5.6.</a>&nbsp;
+account Element<br>
+<a href="#anchor5">Appendix&nbsp;A.</a>&nbsp;
+Example<br>
+<a href="#anchor6">Appendix&nbsp;B.</a>&nbsp;
+Compatibility with OpenSocial<br>
+
+<a href="#rfc.references1">6.</a>&nbsp;
+
+References<br>
+<a href="#rfc.authors">§</a>&nbsp;
+Author's Address<br>
+</p>
+<br clear="all">
+
+<a name="anchor1"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;
+Notation and Conventions</h3>
+
+<p>
+
+        The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a class="info" href="#RFC2119">[RFC2119]<span> (</span><span class="info">Bradner, B., “Key words for use in RFCs to Indicate Requirement Levels,” .</span><span>)</span></a>. Domain name examples use <a class="info" href="#RFC2606">[RFC2606]<span> (</span><span class="info">Eastlake, D. and A. Panitz, “Reserved Top Level DNS Names,” .</span><span>)</span></a>.
+
+
+
+</p>
+<a name="anchor2"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Definitions</h3>
+
+<p>
+        </p>
+<blockquote class="text"><dl>
+<dt>Portable Contacts:</dt>
+<dd>
+            The complete <a class="info" href="#PortableContacts">[PortableContacts]<span> (</span><span class="info">Smarr, J., “Portable Contacts 1.0,” .</span><span>)</span></a> specification.
+
+
+
+</dd>
+<dt>Contact:</dt>
+<dd>
+            A record describing information about a particular person or entity, consisting of contact information (e.g. name, e-mail addresses, phone numbers) and other descriptive information, as is typically found in address book and social networking applications.
+
+</dd>
+<dt>Singular Field:</dt>
+<dd>
+            A contact field that can appear at most once per contact, e.g. <tt>displayName</tt> or <tt>gender</tt>.
+
+
+
+</dd>
+<dt>Plural Field:</dt>
+<dd>
+            A contact field that can appear multiple times per contact, e.g. <tt>emails</tt> or <tt>tags</tt>.
+
+</dd>
+<dt>Simple Field</dt>
+<dd>
+            A Singular Field or Plural Field whose value is a single string attribute (see <a class="info" href="#structure">Section&nbsp;5.1<span> (</span><span class="info">Structure</span><span>)</span></a>).
+
+
+
+</dd>
+<dt>Complex Field</dt>
+<dd>
+            A Singular Field or Plural Field whose value is an object containing multiple sub-field attributes (see <a class="info" href="#structure">Section&nbsp;5.1<span> (</span><span class="info">Structure</span><span>)</span></a>).
+
+</dd>
+<dt>Canonical Value:</dt>
+<dd>
+
+            Specified string values for string-valued contact fields that represent common values in a canonical form, e.g. "male" and "female" for <tt>gender</tt>. Service Providers SHOULD conform to Canonical Values if appropriate, but MAY deviate if they need to represent additional values.
+
+</dd>
+<dt>Primary Sub-Value:</dt>
+<dd>
+            The sub-field in a Complex Field that should be used when sorting or filtering by that field. Unless otherwise specified, the <tt>value</tt> sub-field is always the Primary Sub-Field.
+
+</dd>
+</dl></blockquote><p>
+
+
+</p>
+
+<a name="xmlns"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+XML Namespace</h3>
+
+<p>
+        If a contact is being represented in XML using the Portable Contacts schema, and a developer wishes to embed this contact within a larger XML document, the following XML Namespace URI SHOULD be used: <tt>http://portablecontacts.net/ns/1.0</tt>.
+
+</p>
+<a name="mime"></a><br><hr>
+
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+MIME Media Types</h3>
+
+<p>
+        If a server is providing contact data as a document available at a URL, one of the following MIME types SHOULD be returned as the value of the <tt>Content-type</tt> HTTP response header: <tt>application/poco+json</tt> if the contact is encoded as JSON, or <tt>application/poco+xml</tt> if the contact is encoded as XML.
+
+
+
+</p>
+<a name="schema"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Contact Schema</h3>
+
+<p>
+        The Contact schema defines the containers and attributes used to deliver an individual Contact or a list of Contacts as requested by the Consumer. The traditional contact info fields were taken directly from the vCard spec where possible <a class="info" href="#RFC2425">[RFC2425]<span> (</span><span class="info">Howes, T., “A MIME Content-Type for Directory Information,” .</span><span>)</span></a>, though instances of vCard's archaic spellings were modernized (e.g. <tt>addresses</tt> instead of <tt>adr</tt>). Even with the spelling updates, the field mappings remain equivalent, which means it should be easy to convert Portable Contacts data to and from vCard. By convention, Singular Fields have singular spelling (e.g. <tt>displayName</tt>) and plural fields have plural spelling (e.g. <tt>phoneNumbers</tt>) to make it easy to distinguish them.
+
+
+
+</p>
+<p>
+        Each contact returned MUST include the <tt>id</tt> and <tt>displayName</tt> fields with non-empty values, but all other fields are optional, and it is recognized that not all Service Providers will be able to provide data for all the supported fields. The field list below is broad so that, for Service Providers that do support any of these fields, there is a standard field name available.
+
+</p>
+<a name="structure"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.1"></a><h3>5.1.&nbsp;
+Structure</h3>
+
+<p>
+          Each field is defined as either a Singular Field, in which case there MUST NOT be more than one instance of that field per contact, or as a Plural Field, in which case any number of instances of that field MAY be present per contact.
+
+</p>
+<p>
+          Contact information is formatted using labeled attributes with either structured or unstructured string data. Each attribute value consists of one of the following types:
+
+          </p>
+<blockquote class="text"><dl>
+<dt>Simple:</dt>
+<dd>
+              A single string attribute which MAY specify a REQUIRED data format or allow any string. A simple field MAY contain Canonical Values specified, in which case Service Providers SHOULD try to conform to those values if appropriate, but MAY provide alternate string values to represent additional values.
+
+</dd>
+<dt>Boolean:</dt>
+
+<dd>
+              A special case of a Simple Field with two legal values: <tt>true</tt> and
+              <tt>false</tt>. Values are case-sensitive.
+
+</dd>
+<dt>Complex:</dt>
+<dd>
+              A multi-value attribute containing any combination of other attributes. Complex attributes are defined by listing the child attributes and their types. For most Complex Fields, the <tt>value</tt> sub-field contains the Major Value of that field (i.e. the primary piece of contact information described by that field), and the other fields provide additional meta-data.
+
+
+
+</dd>
+</dl></blockquote><p>
+
+</p>
+<a name="entry-schema"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.2"></a><h3>5.2.&nbsp;
+entry Element</h3>
+
+<p>
+          Unless otherwise specified, all fields are optional and of type xs:string. Also, unless specified, all field values MUST NOT contain any newline characters (\r or \n).
+
+</p>
+<a name="anchor3"></a><br><hr>
+
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.2.1"></a><h3>5.2.1.&nbsp;
+Singular Fields</h3>
+
+<p>
+            </p>
+<blockquote class="text"><dl>
+<dt>id:</dt>
+<dd>
+                Unique identifier for the Contact. Each Contact returned MUST include a non-empty <tt>id</tt> value. This identifier MUST be unique across this user's entire set of Contacts, but MAY not be unique across multiple users' data. It MUST be a stable ID that does not change when the same contact is returned in subsequent requests. For instance, an e-mail address is not a good id, because the same person may use a different e-mail address in the future. Usually, in internal database ID will be the right choice here, e.g. <tt>"12345"</tt>.
+
+
+
+</dd>
+<dt>displayName:</dt>
+<dd>
+                The name of this Contact, suitable for display to end-users. Each Contact returned MUST include a non-empty <tt>displayName</tt> value. The name SHOULD be the full name of the Contact being described if known (e.g. <tt>Joseph Smarr</tt> or <tt>Mr. Joseph Robert Smarr, Esq.</tt>), but MAY be a username or handle, if that is all that is available (e.g. <tt>jsmarr</tt>). The value provided SHOULD be the primary textual label by which this Contact is normally displayed by the Service Provider when presenting it to end-users.
+
+</dd>
+
+<dt>name:</dt>
+<dd>
+                The broken-out components and fully formatted version of the contact's real name, as described in <a class="info" href="#name_element">Section&nbsp;5.3<span> (</span><span class="info">name Element</span><span>)</span></a>.
+
+</dd>
+<dt>nickname:</dt>
+<dd>
+
+                The casual way to address this Contact in real life, e.g. "Bob" or "Bobby" instead of "Robert". This field SHOULD NOT be used to represent a user's username (e.g. <tt>jsmarr</tt> or <tt>daveman692</tt>); the latter should be represented by the <tt>preferredUsername</tt> field.
+
+
+</dd>
+<dt>published:</dt>
+<dd>
+                The date this Contact was first added to the user's address book or friends list (i.e. the creation date of this entry). The value MUST be a valid xs:dateTime (e.g. <tt>2008-01-23T04:56:22Z</tt>).
+
+
+</dd>
+<dt>updated:</dt>
+<dd>
+                The most recent date the details of this Contact were updated (i.e. the modified date of this entry). The value MUST be a valid xd:dateTime (e.g. <tt>2008-01-23T04:56:22Z</tt>). If this Contact has never been modified since its initial creation, the value MUST be the same as the value of <tt>published</tt>.
+
+
+</dd>
+<dt>birthday:</dt>
+<dd>
+                The birthday of this contact. The value MUST be a valid xs:date (e.g. <tt>1975-02-14</tt>. The year value MAY be set to <tt>0000</tt> when the age of the Contact is private or the year is not available.
+
+
+</dd>
+<dt>anniversary:</dt>
+<dd>
+                The wedding anniversary of this contact. The value MUST be a valid xs:date (e.g. <tt>1975-02-14</tt>. The year value MAY be set to <tt>0000</tt> when the year is not available.
+
+
+</dd>
+<dt>gender:</dt>
+<dd>
+                The gender of this contact. Service Providers SHOULD return one of the following Canonical Values, if appropriate: <tt>male</tt>, <tt>female</tt>, or <tt>undisclosed</tt>, and MAY return a different value if it is not covered by one of these Canonical Values.
+
+
+</dd>
+<dt>note:</dt>
+<dd>
+                Notes about this contact, with an unspecified meaning or usage (normally contact notes by the user about this contact). This field MAY contain newlines.
+
+
+</dd>
+<dt>preferredUsername:</dt>
+<dd>
+                The preferred username of this contact on sites that ask for a username (e.g. <tt>jsmarr</tt> or <tt>daveman692</tt>). This field may be more useful for describing the owner (i.e. the value when /@me/@self is requested) than the user's contacts, e.g. Consumers MAY wish to use this value to pre-populate a username for this user when signing up for a new service.
+
+
+</dd>
+<dt>utcOffset:</dt>
+<dd>
+                The offset from UTC of this Contact's current time zone, as of the time this response was returned. The value MUST conform to the offset portion of xs:dateTime, e.g. <tt>-08:00</tt>. Note that this value MAY change over time due to daylight saving time, and is thus meant to signify only the current value of the user's timezone offset.
+
+
+</dd>
+<dt>connected:</dt>
+<dd>
+                Boolean value indicating whether the user and this Contact have established a bi-directionally asserted connection of some kind on the Service Provider's service. The value MUST be either <tt>true</tt> or <tt>false</tt>. The value MUST be true if and only if there is at least one value for the <tt>relationship</tt> field, described below, and is thus intended as a summary value indicating that some type of bi-directional relationship exists, for Consumers that aren't interested in the specific nature of that relationship. For traditional address books, in which a user stores information about other contacts without their explicit acknowledgment, or for services in which users choose to "follow" other users without requiring mutual consent, this value will always be false.
+
+
+</dd>
+</dl></blockquote><p>
+            The following additional Singular Fields are defined, based on their specification in OpenSocial <a class="info" href="#OpenSocial">[OpenSocial]<span> (</span><span class="info">Panzer, J., “OpenSocial 0.8.1 RESTful Protocol Specification,” .</span><span>)</span></a>:
+            <tt>aboutMe</tt>,
+            <tt>bodyType</tt>,
+            <tt>currentLocation</tt>,
+            <tt>drinker</tt>,
+            <tt>ethnicity</tt>,
+            <tt>fashion</tt>,
+            <tt>happiestWhen</tt>,
+            <tt>humor</tt>,
+            <tt>livingArrangement</tt>,
+            <tt>lookingFor</tt>,
+            <tt>profileSong</tt>,
+            <tt>profileVideo</tt>,
+            <tt>relationshipStatus</tt>,
+            <tt>religion</tt>,
+            <tt>romance</tt>,
+            <tt>scaredOf</tt>,
+            <tt>sexualOrientation</tt>,
+            <tt>smoker</tt>, and
+            <tt>status</tt>.
+
+
+
+</p>
+<a name="anchor4"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.2.2"></a><h3>5.2.2.&nbsp;
+Plural Fields</h3>
+
+<p>
+            Unless specified otherwise, all Plural Fields have the same three standard sub-fields:
+            </p>
+<blockquote class="text"><dl>
+<dt>value:</dt>
+<dd>
+
+                The primary value of this field, e.g. the actual e-mail address, phone number, or URL. When specifying a <tt>sortBy</tt> field in the Query Parameters for a Plural Field, the default meaning is to sort based on this <tt>value</tt> sub-field. Each non-empty Plural Field value MUST contain at least the value sub-field, but all other sub-fields are optional.
+
+</dd>
+<dt>type:</dt>
+<dd>
+                The type of field for this instance, usually used to label the preferred function of the given contact information. Unless otherwise specified, this string value specifies Canonical Values of <tt>work</tt>, <tt>home</tt>, and <tt>other</tt>.
+
+
+
+</dd>
+<dt>primary:</dt>
+<dd>
+                A Boolean value indicating whether this instance of the Plural Field is the primary or preferred value of for this field, e.g. the preferred mailing address or primary e-mail address. Service Providers MUST NOT mark more than one instance of the same Plural Field as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
+
+</dd>
+</dl></blockquote><p>
+            When returning Plural Fields, Service Providers SHOULD canonicalize the value returned, if appropriate (e.g. for e-mail addresses and URLs). Providers MAY return the same value more than once with different types (e.g. the same e-mail address may used for work and home), but SHOULD NOT return the same (type, value) combination more than once per Plural Field, as this complicates processing by the Consumer.
+
+            </p>
+<blockquote class="text"><dl>
+<dt>emails:</dt>
+<dd>
+                E-mail address for this Contact. The value SHOULD be canonicalized by the Service Provider, e.g. <tt>joseph@plaxo.com</tt> instead of <tt>joseph@PLAXO.COM</tt>.
+
+
+
+</dd>
+<dt>urls:</dt>
+<dd>
+                URL of a web page relating to this Contact. The value SHOULD be canonicalized by the Service Provider, e.g. <tt>http://josephsmarr.com/about/</tt> instead of <tt>JOSEPHSMARR.COM/about/</tt>. In addition to the standard Canonical Values for <tt>type</tt>, this field also defines the additional Canonical Values <tt>blog</tt> and <tt>profile</tt>.
+
+
+
+</dd>
+<dt>phoneNumbers:</dt>
+<dd>
+                Phone number for this Contact. No canonical value is assumed here. In addition to the standard Canonical Values for <tt>type</tt>, this field also defines the additional Canonical Values <tt>mobile</tt>, <tt>fax</tt>, and <tt>pager</tt>.
+
+</dd>
+<dt>ims:</dt>
+
+<dd>
+                Instant messaging address for this Contact. No official canonicalization rules exist for all instant messaging addresses, but Service Providers SHOULD remove all whitespace and convert the address to lowercase, if this is appropriate for the service this IM address is used for. Instead of the standard Canonical Values for <tt>type</tt>, this field defines the following Canonical Values to represent currently popular IM services: <tt>aim</tt>, <tt>gtalk</tt>, <tt>icq</tt>, <tt>xmpp</tt>, <tt>msn</tt>, <tt>skype</tt>, <tt>qq</tt>, and <tt>yahoo</tt>.
+
+
+
+</dd>
+<dt>photos:</dt>
+<dd>
+                URL of a photo of this contact. The value SHOULD be a canonicalized URL, and MUST point to an actual image file (e.g. a GIF, JPEG, or PNG image file) rather than to a web page containing an image. Service Providers MAY return the same image at different sizes, though it is recognized that no standard for describing images of various sizes currently exists. Note that this field SHOULD NOT be used to send down arbitrary photos taken by this user, but specifically profile photos of the contact suitable for display when describing the contact.
+
+</dd>
+<dt>tags:</dt>
+<dd>
+                A user-defined category or label for this contact, e.g. "favorite" or "web20". These values SHOULD be case-insensitive, and there SHOULD NOT be multiple tags provided for a given contact that differ only in case. Note that this field is a Simple Field, meaning each instance consists only of a string value.
+
+</dd>
+<dt>relationships:</dt>
+<dd>
+                A bi-directionally asserted relationship type that was established between the user and this contact by the Service Provider. The value SHOULD conform to one of the XFN relationship values (e.g. kin, friend, contact, etc.) if appropriate, but MAY be an alternative value if needed. Note this field is a parallel set of category labels to the <tt>tags</tt> field, but relationships MUST have been bi-directionally confirmed, whereas tags are asserted by the user without acknowledgment by this Contact. Note that this field is a Simple Field, meaning each instance consists only of a string value.
+
+
+
+</dd>
+<dt>addresses:</dt>
+<dd>
+                A physical mailing address for this Contact, as described in <a class="info" href="#address_element">Section&nbsp;5.4<span> (</span><span class="info">address Element</span><span>)</span></a>.
+
+</dd>
+<dt>organizations:</dt>
+<dd>
+
+                A current or past organizational affiliation of this Contact, as described in <a class="info" href="#organization_element">Section&nbsp;5.5<span> (</span><span class="info">organization Element</span><span>)</span></a>.
+
+</dd>
+<dt>accounts:</dt>
+<dd>
+                An online account held by this Contact, as described in <a class="info" href="#account_element">Section&nbsp;5.6<span> (</span><span class="info">account Element</span><span>)</span></a>.
+
+
+
+</dd>
+</dl></blockquote><p>
+            The following additional Plural Fields are defined, based on their specification in OpenSocial:
+            <tt>activities</tt>,
+            <tt>books</tt>,
+            <tt>cars</tt>,
+            <tt>children</tt>,
+            <tt>food</tt>,
+            <tt>heroes</tt>,
+            <tt>interests</tt>,
+            <tt>jobInterests</tt>,
+            <tt>languages</tt>,
+            <tt>languagesSpoken</tt>,
+            <tt>movies</tt>,
+            <tt>music</tt>,
+            <tt>pets</tt>,
+            <tt>politicalViews</tt>,
+            <tt>quotes</tt>,
+            <tt>sports</tt>,
+            <tt>turnOffs</tt>,
+            <tt>turnOns</tt>, and
+            <tt>tvShows</tt>.
+
+
+
+</p>
+<a name="name_element"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.3"></a><h3>5.3.&nbsp;
+name Element</h3>
+
+<p>
+          The components of the contact's real name. Providers MAY return just the full name as a single string in the <tt>formatted</tt> sub-field, or they MAY return just the individual component fields using the other sub-fields, or they MAY return both. If both variants are returned, they SHOULD be describing the same name, with the formatted name indicating how the component fields should be combined.
+          </p>
+<blockquote class="text"><dl>
+
+<dt>formatted:</dt>
+<dd>
+              The full name, including all middle names, titles, and suffixes as appropriate, formatted for display (e.g. <tt>Mr. Joseph Robert Smarr, Esq.</tt>). This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+
+</dd>
+<dt>familyName:</dt>
+<dd>
+              The family name of this Contact, or "Last Name" in most Western languages (e.g. <tt>Smarr</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+
+
+
+</dd>
+<dt>givenName:</dt>
+<dd>
+              The given name of this Contact, or "First Name" in most Western languages (e.g. <tt>Joseph</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+
+</dd>
+<dt>middleName:</dt>
+<dd>
+              The middle name(s) of this Contact (e.g. <tt>Robert</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+
+
+
+</dd>
+<dt>honorificPrefix:</dt>
+<dd>
+              The honorific prefix(es) of this Contact, or "Title" in most Western languages (e.g. <tt>Mr.</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+
+</dd>
+<dt>honorificSuffix:</dt>
+<dd>
+              The honorifix suffix(es) of this Contact, or "Suffix" in most Western languages (e.g. <tt>Esq.</tt> given the full name <tt>Mr. Joseph Robert Smarr, Esq.</tt>).
+
+
+
+</dd>
+</dl></blockquote><p>
+
+</p>
+<a name="address_element"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.4"></a><h3>5.4.&nbsp;
+address Element</h3>
+
+<p>
+          The components of a physical mailing address. Service Providers MAY return just the full address as a single string in the <tt>formatted</tt> sub-field, or they MAY return just the individual component fields using the other sub-fields, or they MAY return both. If both variants are returned, they SHOULD be describing the same address, with the formatted address indicating how the component fields should be combined.
+          </p>
+
+<blockquote class="text"><dl>
+<dt>formatted:</dt>
+<dd>
+              The full mailing address, formatted for display or use with a mailing label. This field MAY contain newlines. This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+
+</dd>
+<dt>streetAddress:</dt>
+<dd>
+              The full street address component, which may include house number, street name, PO BOX, and multi-line extended street address information. This field MAY contain newlines.
+
+</dd>
+<dt>locality:</dt>
+<dd>
+
+              The city or locality component.
+
+
+</dd>
+<dt>region:</dt>
+<dd>
+              The state or region component.
+
+</dd>
+<dt>postalCode:</dt>
+<dd>
+              The zipcode or postal code component.
+
+</dd>
+<dt>country:</dt>
+
+<dd>
+              The country name component.
+
+
+</dd>
+</dl></blockquote><p>
+
+</p>
+<a name="organization_element"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.5"></a><h3>5.5.&nbsp;
+organization Element</h3>
+
+<p>
+          Describes a current or past organizational affiliation of this contact. Service Providers that support only a single Company Name and Job Title field should represent them with a single <tt>organization</tt> element with <tt>name</tt> and <tt>title</tt> properties, respectively.
+          </p>
+
+<blockquote class="text"><dl>
+<dt>name:</dt>
+<dd>
+              The name of the organization (e.g. company, school, or other organization). This field MUST have a non-empty value for each organization returned. This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+
+</dd>
+<dt>department:</dt>
+<dd>
+              The department within this organization.
+
+</dd>
+<dt>title:</dt>
+<dd>
+
+              The job title or role within this organization.
+
+
+</dd>
+<dt>type:</dt>
+<dd>
+              The type of organization, with Canonical Values <tt>job</tt> and <tt>school</tt>.
+
+</dd>
+<dt>startDate:</dt>
+<dd>
+
+              The date this Contact joined this organization. This value SHOULD be a valid xs:date if possible, but MAY be an unformatted string, since it is recognized that this field is often presented as free-text.
+
+
+</dd>
+<dt>endDate:</dt>
+<dd>
+              The date this Contact left this organization or the role specified by title within this organization. This value SHOULD be a valid xs:date if possible, but MAY be an unformatted string, since it is recognized that this field is often presented as free-text.
+
+</dd>
+<dt>location:</dt>
+<dd>
+              The physical location of this organization. This may be a complete address, or an abbreviated location like "San Francisco".
+
+</dd>
+
+<dt>description:</dt>
+<dd>
+              A textual description of the role this Contact played in this organization. This field MAY contain newlines.
+
+
+</dd>
+</dl></blockquote><p>
+
+</p>
+<a name="account_element"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.5.6"></a><h3>5.6.&nbsp;
+account Element</h3>
+
+<p>
+          Describes an account held by this Contact, which MAY be on the Service Provider's service, or MAY be on a different service. Consumers SHOULD NOT assume that this account has been verified by the Service Provider to actually belong to this Contact. For each account, the <tt>domain</tt> is the top-most authoritative domain for this account, e.g. <tt>yahoo.com</tt> or <tt>reader.google.com</tt>, and MUST be non-empty. Each account must also contain a non-empty value for either <tt>username</tt> or <tt>userid</tt>, and MAY contain both, in which case the two values MUST be for the same account. These accounts can be used to determine if a user on one service is also known to be the same person on a different service, to facilitate connecting to people the user already knows on different services. If Consumers want to turn these accounts into profile URLs, they can use an open-source library like <a class="info" href="#google-sgnodemapper">[google&#8209;sgnodemapper]<span> (</span><span class="info">Fitzpatrick, B., “Social Graph Node Mapper,” .</span><span>)</span></a>.
+          </p>
+
+<blockquote class="text"><dl>
+<dt>domain:</dt>
+<dd>
+              The top-most authoritative domain for this account, e.g. "twitter.com". This is the Primary Sub-Field for this field, for the purposes of sorting and filtering.
+
+</dd>
+<dt>username:</dt>
+<dd>
+              An alphanumeric user name, usually chosen by the user, e.g. "jsmarr".
+
+</dd>
+<dt>userid:</dt>
+<dd>
+
+              A user ID number, usually chosen automatically, and usually numeric but sometimes alphanumeric, e.g. "12345" or "1Z425A".
+
+
+</dd>
+</dl></blockquote><p>
+
+</p>
+<a name="anchor5"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
+Example</h3>
+
+<p>
+        Here is a sample contact that illustrates much of of the Portable Contacts schema.
+
+
+</p>
+<p>Sample contact (JSON):
+
+</p>
+<p>
+        </p>
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>"entry": {
+  "id": "703887",
+  "displayName": "Mork Hashimoto",
+  "name": {
+    "familyName": "Hashimoto",
+    "givenName": "Mork"
+  },
+  "birthday": "0000-01-16",
+  "gender": "male",
+  "drinker": "heavily",
+  "tags": [
+    "plaxo guy",
+    "favorite"
+  ],
+  "emails": [
+    {
+      "value": "mhashimoto-04@plaxo.com",
+      "type": "work",
+      "primary": "true"
+    },
+    {
+      "value": "mhashimoto-04@plaxo.com",
+      "type": "home"
+    },
+    {
+      "value": "mhashimoto@plaxo.com",
+      "type": "home"
+    }
+  ],
+  "urls": [
+    {
+      "value": "http://www.seeyellow.com",
+      "type": "work"
+    },
+    {
+      "value": "http://www.angryalien.com",
+      "type": "home"
+    }
+  ],
+  "phoneNumbers": [
+    {
+      "value": "KLONDIKE5",
+      "type": "work"
+    },
+    {
+      "value": "650-123-4567",
+      "type": "mobile"
+    }
+  ],
+  "photos": [
+    {
+      "value": "http://sample.site.org/photos/12345.jpg",
+      "type": "thumbnail"
+    }
+  ],
+  "ims": [
+    {
+      "value": "plaxodev8",
+      "type": "aim"
+    }
+  ],
+  "addresses": [
+    {
+      "type": "home",
+      "streetAddress": "742 Evergreen Terrace\nSuite 123",
+      "locality": "Springfield",
+      "region": "VT",
+      "postalCode": "12345",
+      "country": "USA",
+      "formatted": "742 Evergreen Terrace\nSuite 123\nSpringfield, VT 12345 USA"
+    }
+  ],
+  "organizations": [
+    {
+      "name": "Burns Worldwide",
+      "title": "Head Bee Guy"
+    }
+  ],
+  "accounts": [
+    {
+      "domain": "plaxo.com",
+      "userid": "2706"
+    }
+  ]
+}
+</pre></div><p>
+
+
+</p>
+<p>Sample contact (XML):
+</p>
+<p>
+        </p>
+
+<div style="display: table; width: 0; margin-left: 3em; margin-right: auto"><pre>&lt;entry&gt;
+
+ &lt;id&gt;703887&lt;/id&gt;
+ &lt;displayName&gt;Mork Hashimoto&lt;/displayName&gt;
+ &lt;name&gt;
+
+  &lt;familyName&gt;Hashimoto&lt;/familyName&gt;
+
+  &lt;givenName&gt;Mork&lt;/givenName&gt;
+ &lt;/name&gt;
+ &lt;birthday&gt;0000-01-16&lt;/birthday&gt;
+
+ &lt;gender&gt;male&lt;/gender&gt;
+
+ &lt;drinker&gt;heavily&lt;/drinker&gt;
+ &lt;tags&gt;plaxo guy&lt;/tags&gt;
+ &lt;tags&gt;favorite&lt;/tags&gt;
+
+ &lt;emails&gt;
+
+  &lt;value&gt;mhashimoto-04@plaxo.com&lt;/value&gt;
+  &lt;type&gt;work&lt;/type&gt;
+  &lt;primary&gt;true&lt;/primary&gt;
+
+ &lt;/emails&gt;
+
+ &lt;emails&gt;
+  &lt;value&gt;mhashimoto-04@plaxo.com&lt;/value&gt;
+  &lt;type&gt;home&lt;/type&gt;
+
+ &lt;/emails&gt;
+ &lt;emails&gt;
+
+  &lt;value&gt;mhashimoto@plaxo.com&lt;/value&gt;
+  &lt;type&gt;home&lt;/type&gt;
+
+ &lt;/emails&gt;
+ &lt;urls&gt;
+  &lt;value&gt;http://www.seeyellow.com&lt;/value&gt;
+
+  &lt;type&gt;work&lt;/type&gt;
+
+ &lt;/urls&gt;
+ &lt;urls&gt;
+  &lt;value&gt;http://www.angryalien.com&lt;/value&gt;
+  &lt;type&gt;home&lt;/type&gt;
+
+ &lt;/urls&gt;
+ &lt;phoneNumbers&gt;
+  &lt;value&gt;KLONDIKE5&lt;/value&gt;
+  &lt;type&gt;work&lt;/type&gt;
+ &lt;/phoneNumbers&gt;
+
+ &lt;phoneNumbers&gt;
+  &lt;value&gt;650-123-4567&lt;/value&gt;
+  &lt;type&gt;mobile&lt;/type&gt;
+ &lt;/phoneNumbers&gt;
+
+ &lt;photos&gt;
+
+  &lt;value&gt;http://sample.site.org/photos/12345.jpg&lt;/value&gt;
+  &lt;type&gt;thumbnail&lt;/type&gt;
+ &lt;/photos&gt;
+
+ &lt;ims&gt;
+  &lt;value&gt;plaxodev8&lt;/value&gt;
+
+  &lt;type&gt;aim&lt;/type&gt;
+ &lt;/ims&gt;
+
+ &lt;addresses&gt;
+  &lt;type&gt;home&lt;/type&gt;
+  &lt;streetAddress&gt;&lt;![CDATA[742 Evergreen Terrace
+Suite 123]]&gt;&lt;/streetAddress&gt;
+
+  &lt;locality&gt;Springfield&lt;/locality&gt;
+
+  &lt;region&gt;VT&lt;/region&gt;
+  &lt;postalCode&gt;12345&lt;/postalCode&gt;
+  &lt;country&gt;USA&lt;/country&gt;
+
+  &lt;formatted&gt;&lt;![CDATA[742 Evergreen Terrace
+Suite 123
+Springfield, VT 12345 USA]]&gt;&lt;/formatted&gt;
+
+ &lt;/addresses&gt;
+ &lt;organizations&gt;
+  &lt;name&gt;Burns Worldwide&lt;/name&gt;
+  &lt;title&gt;Head Bee Guy&lt;/title&gt;
+
+ &lt;/organizations&gt;
+ &lt;accounts&gt;
+  &lt;domain&gt;plaxo.com&lt;/domain&gt;
+  &lt;userid&gt;2706&lt;/userid&gt;
+ &lt;/accounts&gt;
+
+&lt;/entry&gt;
+</pre></div><p>
+
+
+</p>
+<a name="anchor6"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<a name="rfc.section.B"></a><h3>Appendix B.&nbsp;
+Compatibility with OpenSocial</h3>
+
+<p>
+        This version of the Portable Contacts specification is currently wire-compatible with the overlapping portion of the OpenSocial RESTful Protocol version 0.8.1 <a class="info" href="#OpenSocial">[OpenSocial]<span> (</span><span class="info">Panzer, J., “OpenSocial 0.8.1 RESTful Protocol Specification,” .</span><span>)</span></a>. Specifically, <em>any compliant OpenSocial RESTful Protocol 0.8.1 Provider is also a compliant Portable Contacts Provider</em>, because they are specified to use the same Authorization methods (OAuth), Additional Path Information, Query Parameters, and Contact Schema. The OpenSocial and Portable Contacts communities chose to wire-align our respective specs in order to maximize widespread adoption of a single API for accessing people data.
+
+
+
+</p>
+<p>
+        It is our intention to maintain this compatibility going forward, so long as it is feasible, and so long as the changes required are compatible with the Goals and Approach of this spec. Although Portable Contacts is an independent spec, with a more limited scope than OpenSocial, any proposed changes to either this Portable Contacts spec or the OpenSocial RESTful Protocol should be considered in the context of both communities, and we should strive not to break compatibility unless it is truly necessary, e.g. if the goals of the two communities diverge significantly in the future.
+
+</p>
+<a name="rfc.references1"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+<h3>6.&nbsp;References</h3>
+<table width="99%" border="0">
+<tbody><tr><td class="author-text" valign="top"><a name="OAuth Core 1.0">[OAuth Core 1.0]</a></td>
+<td class="author-text">OAuth Core Workgroup, “<a href="http://oauth.net/core/1.0">OAuth Core 1.0</a>.”</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="OAuth Discovery">[OAuth Discovery]</a></td>
+<td class="author-text">Eran Hammer-Lahav, E., “<a href="http://oauth.net/discovery/ ">OAuth Discovery 1.0</a>.”</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenSearch">[OpenSearch]</a></td>
+<td class="author-text">Clinton, D., “<a href="http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3">OpenSearch 1.1</a>.”</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenSocial">[OpenSocial]</a></td>
+<td class="author-text">Panzer, J., “<a href="http://www.opensocial.org/Technical-Resources/opensocial-spec-v081/restful-protocol">OpenSocial 0.8.1 RESTful Protocol Specification</a>.”</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="PortableContacts">[PortableContacts]</a></td>
+<td class="author-text">Smarr, J., “<a href="draft-spec.html">Portable Contacts 1.0</a>.”</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2119">[RFC2119]</a></td>
+<td class="author-text">Bradner, B., “<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>,” RFC&nbsp;2119.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2425">[RFC2425]</a></td>
+
+<td class="author-text">Howes, T., “<a href="http://tools.ietf.org/html/rfc2425">A MIME Content-Type for Directory Information</a>,” RFC&nbsp;2425.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2606">[RFC2606]</a></td>
+<td class="author-text">Eastlake, D. and A. Panitz, “<a href="http://tools.ietf.org/html/rfc2606">Reserved Top Level DNS Names</a>,” RFC&nbsp;2606.</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="RFC2616">[RFC2616]</a></td>
+
+<td class="author-text">Fielding, R., “<a href="http://tools.ietf.org/html/rfc2616">Hypertext Transfer Protocol -- HTTP/1.1</a>,” RFC&nbsp;2616.</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2617">[RFC2617]</a></td>
+<td class="author-text">Franks, J., “<a href="http://tools.ietf.org/html/rfc2617">HTTP Authentication: Basic and Digest Access Authentication</a>,” RFC&nbsp;2617.</td></tr>
+
+<tr><td class="author-text" valign="top"><a name="XRDS-Simple">[XRDS-Simple]</a></td>
+
+<td class="author-text">Hammer-Lahav, E., “<a href="http://xrds-simple.net/core/1.0/">XRDS-Simple 1.0</a>.”</td></tr>
+<tr><td class="author-text" valign="top"><a name="google-sgnodemapper">[google-sgnodemapper]</a></td>
+<td class="author-text">Fitzpatrick, B., “<a href="http://code.google.com/p/google-sgnodemapper/">Social Graph Node Mapper</a>.”</td></tr>
+</tbody></table>
+
+<a name="rfc.authors"></a><br><hr>
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tbody><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></tbody></table>
+
+<h3>Author's Address</h3>
+
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Joseph Smarr</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Plaxo</td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:joseph@plaxo.com">joseph@plaxo.com</a></td></tr>
+</tbody></table>
+
+
+
+</body></html>
+
