@@ -14,7 +14,7 @@ format. The specification is still used by OStatus/GnuSocial and Mastodon.
 2017, leaving the specification documents abandoned. This copy was
 reconstituted from the [Wayback Machine](https://archive.org/web/). The
 protocol is still used by OStatus/GnuSocial and Mastodon in parts, using part
-of the schema vocabulary in the [Activity Streams 1.0
+of the schema vocabulary to extend the Atom format of the [Activity Streams 1.0
 spec](http://activitystrea.ms)
 
 * [Portable Contacts Spec draft C](portablecontacts/draft-spec.html)
