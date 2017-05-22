@@ -1,0 +1,1 @@
+Dead specs live forever
